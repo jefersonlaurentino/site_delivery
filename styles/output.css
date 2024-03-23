@@ -931,6 +931,10 @@ video {
   width: 6rem;
 }
 
+.w-3\/5 {
+  width: 60%;
+}
+
 .w-\[this-is\\\\\] {
   width: this-is\\;
 }
@@ -945,10 +949,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-3\/5 {
-  width: 60%;
 }
 
 .max-w-4xl {

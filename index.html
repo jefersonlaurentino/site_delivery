@@ -6,9 +6,25 @@
     <title>Site delivery</title>
     <link rel="stylesheet" href="./styles/output.css">
 </head>
-<body class="bg-zinc-200 h-[1000px]">
+<body class="bg-zinc-200">
 
-    <div class="teste h-screen w-full  absolute bg-black/50 flex flex-col justify-center items-center z-10 hidden">
+    <!-- card produto -->
+    <div id="clone" class="card relative hidden">
+        <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg" alt="" class="img">
+        <div class="info">
+            <h3 class="titulo_info">Carne de sol</h3>
+            <p class="desc_info">masa, molho, Carne de sol, cebola, queijo, azeitona.</p>
+            <div class="cmp_preco">
+                <p class="preco_info">R$ 22,00</p>
+                <span class="preco_info span_preco">tamanho(p)</span>
+            </div>
+        </div>
+        <div class="click absolute h-full w-full"></div>
+    </div>
+    <!-- fim do card -->
+
+    <!-- box-card -->
+    <div id="box_card" class="h-screen w-full fixed bg-black/50 flex flex-col justify-center items-center z-10 hidden">
         <div class="box_conteiner bg-white w-11/12 max-w-4xl  rounded-lg p-3 shadow-xl shadow-black/60">
             <div>
                 <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg" alt="logo da loja." alt="produto">
@@ -35,6 +51,7 @@
             </div>
         </div>
     </div>
+    <!-- fim box card -->
 
     <header class="bg-black text-white p-6 flex flex-col justify-center items-center">
         <div>
@@ -61,23 +78,11 @@
             </ul>
         </details> -->
     </aside>
-    <main class="max-w-5xl m-auto">
+    <main id="pizzas" class="max-w-5xl m-auto">
         <div class="campo_card">
             <h2 class="titulo_cmp_card">Pizzas</h2>
-            <div class="card relative">
-                <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg" alt="" class="img">
-                <div class="info">
-                    <h3 class="titulo_info">Carne de sol</h3>
-                    <p class="desc_info">masa, molho, Carne de sol, cebola, queijo, azeitona.</p>
-                    <div class="cmp_preco">
-                        <p class="preco_info">R$ 22,00</p>
-                        <span class="preco_info span_preco">tamanho(p)</span>
-                    </div>
-                </div>
-                <div class="click absolute h-full w-full"></div>
-            </div>
         </div>
     </main>
-    <script src="teste.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
