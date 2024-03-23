@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .titulo_cmp_card {
+        @apply font-bold text-lg pl-4 py-2 bg-white;
+    }
+    .card {
+        @apply w-11/12 bg-white m-auto my-2 rounded-lg shadow-md shadow-black/30 flex;
+    }
+    .img {
+        @apply w-1/3 bg-red-200 rounded-lg;
+    }
+    .info {
+        @apply  p-1;
+    }
+    .titulo_info {
+        @apply  font-bold text-lg;
+    }
+    .cmp_preco {
+        @apply flex justify-between;
+    }
+    .preco_info {
+        @apply font-semibold;
+    }
+}
