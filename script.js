@@ -7,10 +7,6 @@ const pizzas_doces = selecionar("#pizzas_doces")
 const petiscos = selecionar("#petiscos")
 const box_card = selecionar("#box_card")
 
-
-
-
-
 const apiProdutos = "lista_produtos.json"
 fetch(apiProdutos)
 .then(res => res.json())
@@ -61,7 +57,6 @@ const click = (elem , conf)=>{
     const click_produto = [...teste]
         click_produto.map((el)=>{
         el.addEventListener('click',(e)=>{
-            console.log(e.target);
             janela(conf)
         })
     })
@@ -69,6 +64,7 @@ const click = (elem , conf)=>{
 
 // fim janela card
 
+let key = 0
 // abre e fecha janela 
 const janela = (conf)=>{
     if (box_card.classList[9] == 'hidden'){
@@ -77,8 +73,28 @@ const janela = (conf)=>{
         box_card.querySelector("#img").alt = conf.titulo
         box_card.querySelector(".titulo_info").innerText = conf.titulo
         box_card.querySelector(".descri_info").innerText = conf.descricao
+        // box_card.querySelector("#preco").innerText = conf.preco[key]
+        tamanho_pedido(box_card.querySelectorAll(".tm_p"))
         box_card.querySelector("#voltar").addEventListener("click",()=>{
             box_card.classList.add('hidden')
         })
     }
+}
+
+const tamanho_pedido = (tm)=>{
+    tm.forEach((e)=>{
+        e.addEventListener("click",()=>{
+            remove_tamanho(tm)
+            e.classList.add('bg-red-600','text-white')
+            // key = e.id
+            // console.log(key);
+        })
+    })
+
+}
+
+const remove_tamanho = (tm)=>{
+    tm.forEach((e)=>{
+        e.classList.remove('bg-red-600','text-white')
+    })
 }
