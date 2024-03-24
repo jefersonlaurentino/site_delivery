@@ -1,0 +1,26 @@
+[
+    {
+        "id": "01" ,
+        "type": "pizza_doce",
+        "img": "https://claudia.abril.com.br/wp-content/uploads/2020/02/receita-pizza-calabresa.jpg?quality=85&strip=info",
+        "titulo": "Calabresa",
+        "descricao": "Molho, Calabresa, Cebola, Queijo, Azeitona.",
+        "preco": [ "R$ 21,00" , 25 , 34 , 38 ]
+    },
+    {
+        "id": "02" ,
+        "type": "pizza",
+        "img": "https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg",
+        "titulo": "Carne de sol",
+        "descricao": "Molho, Carne de sol, Cebola, Queijo, Azeitona.",
+        "preco": [ 23 , 25 , 35 , 40 ]
+    },
+    {
+        "id": "03" ,
+        "type": "pizza",
+        "img": "https://receitas123.com/wp-content/uploads/2023/05/pizza-de-frango-com-catupiry.png",
+        "titulo": "Frango com Catupiry",
+        "descricao": "Molho, Frango, Catupiry, Azeitona.",
+        "preco": [ 23 , 25 , 35 , 40 ]
+    }
+]
