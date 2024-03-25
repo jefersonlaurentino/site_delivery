@@ -1,4 +1,5 @@
 let modalkey = 0
+let arrayCar = []
 
 const selecionar=(item)=>document.querySelector(item);
 
@@ -35,7 +36,6 @@ class cardProduto {
         
         const produto = selecionar(".card").cloneNode(true);
         produto.classList.remove("hidden")
-        produto.setAttribute("id", this.id)
         produto.querySelector(".img").src = this.img
         produto.querySelector(".img").alt = this.titulo
         produto.querySelector(".titulo_info").innerText = this.titulo
@@ -56,17 +56,12 @@ const formatoReal = (valor) =>{
     return valor.toLocaleString('pt-br',{ style: 'currency',currency: 'BRL'})
 }
 
-const pegarKey= (e)=>{
-    console.log(e.target.closest('.card').id);
-}
-
 // janela card produto
 const click = (elem , conf)=>{
     let teste = elem.querySelectorAll(".click")
     const click_produto = [...teste]
         click_produto.map((el)=>{
         el.addEventListener('click',(e)=>{
-            pegarKey(e)
             abriJanela(conf)
         })
     })
@@ -77,6 +72,7 @@ const click = (elem , conf)=>{
 
 // abre e fecha janela 
 const janela = (conf)=>{
+    let tes = box_card.firstElementChild.setAttribute('id',conf.id) 
     selecionar("#img").src = conf.img
     selecionar("#img").alt = conf.titulo
     box_card.querySelector(".titulo_info").innerText = conf.titulo
@@ -86,12 +82,15 @@ const janela = (conf)=>{
     } else {
         box_card.querySelector(".tm").classList.remove("hidden")
     }
-    selecionar("#preco").innerText = formatoReal(conf.preco[0])
-    tamanho_pedido(box_card.querySelectorAll(".tm_p"))
-    box_card.querySelector("#voltar").addEventListener("click",()=>{
+    selecionar("#preco").innerText = formatoReal(conf.preco[modalkey])
+    tamanho_pedido(box_card.querySelectorAll(".tm_p"),conf)
+    
+    box_card.querySelector('#voltar').addEventListener('click',()=>{
         fechaJanela()
     })
-
+    box_card.querySelector('#carrinho').addEventListener('click',()=>{
+        fechaJanela()
+    })
 }
 
 const abriJanela = (conf) =>{
@@ -101,17 +100,21 @@ const abriJanela = (conf) =>{
 
 const fechaJanela = () =>{
     box_card.classList.add("hidden")
+    modalkey = 0
 }
 
-const tamanho_pedido = (tm)=>{
-    tm.forEach((e)=>{
+const tamanho_pedido = (tm,conf)=>{
+    tm.forEach((e,index)=>{
+        remove_tamanho(tm)
+        tm[0].classList.add('bg-red-600','text-white')
         e.addEventListener("click",()=>{
             remove_tamanho(tm)
             e.classList.add('bg-red-600','text-white')
-            // console.log(key);
+            selecionar("#preco").innerText = formatoReal(conf.preco[index])
+            modalkey = index
         })
     })
-
+// e.classList.add('bg-red-600','text-white')
 }
 
 const remove_tamanho = (tm)=>{
