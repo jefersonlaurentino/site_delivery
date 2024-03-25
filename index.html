@@ -25,7 +25,7 @@
 
     <!-- box-card -->
     <div id="box_card" class="h-screen w-full fixed bg-black/50 flex flex-col justify-center items-center z-10 hidden">
-        <div class="box_conteiner bg-white w-11/12 max-w-4xl  rounded-lg p-3 shadow-xl shadow-black/60">
+        <div class="box_conteiner bg-white w-11/12 max-w-4xl  rounded-lg p-3 shadow-xl shadow-black/60 ">
             <div class="flex mb-3">
                 <div class="w-2/5">
                     <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg" alt="" id="img">
@@ -36,14 +36,14 @@
                 </div>
             </div>
             <h2>Escolha o tamanho:</h2>
-            <div class="flex rounded-lg overflow-hidden font-bold bg-gray-200 cursor-pointer mt-2">
-                <p id="0" class="tm_p p-1 w-1/4 bg-red-600 text-white  text-center border-r-2 border-black">P</p>
-                <p id="1" class="tm_p p-1 w-1/4 text-center border-r-2 border-black">M</p>
-                <p id="2" class="tm_p p-1 w-1/4 text-center border-r-2 border-black">G</p>
-                <p id="3" class="tm_p p-1 w-1/4 text-center">GG</p>
+            <div class="tm flex rounded-lg overflow-hidden font-bold bg-gray-200 cursor-pointer mt-2">
+                <p data-key="0" class="tm_p p-1 w-1/4 bg-red-600 text-white  text-center border-r-2 border-black">P</p>
+                <p data-key="1" class="tm_p p-1 w-1/4 text-center border-r-2 border-black">M</p>
+                <p data-key="2" class="tm_p p-1 w-1/4 text-center border-r-2 border-black">G</p>
+                <p data-key="3" class="tm_p p-1 w-1/4 text-center">GG</p>
             </div>
             <div class="flex m-3 h-9 justify-between font-semibold text-2xl">
-                <p class="">R$ <span id="preco"></span></p>
+                <p class="" id="preco"></p>
                 <div class="flex">
                     <div class="bg-gray-300 px-2 text-sm font-bold cursor-pointer">-</div>
                     <div class="bg-white border-2 px-2 text-sm font-bold">1</div>

@@ -5,7 +5,7 @@
         "img": "https://claudia.abril.com.br/wp-content/uploads/2020/02/receita-pizza-calabresa.jpg?quality=85&strip=info",
         "titulo": "Calabresa",
         "descricao": "Molho, Calabresa, Cebola, Queijo, Azeitona.",
-        "preco": [ "R$ 21,00" , 25 , 34 , 38 ]
+        "preco": [ 21 , 25 , 34 , 38 ]
     },
     {
         "id": "02" ,
@@ -20,6 +20,14 @@
         "type": "pizza",
         "img": "https://receitas123.com/wp-content/uploads/2023/05/pizza-de-frango-com-catupiry.png",
         "titulo": "Frango com Catupiry",
+        "descricao": "Molho, Frango, Catupiry, Azeitona.",
+        "preco": [ 23 , 25 , 35 , 40 ]
+    },
+    {
+        "id": "04" ,
+        "type": "petisco",
+        "img": "",
+        "titulo": "pastel",
         "descricao": "Molho, Frango, Catupiry, Azeitona.",
         "preco": [ 23 , 25 , 35 , 40 ]
     }
