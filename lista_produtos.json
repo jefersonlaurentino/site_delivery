@@ -25,10 +25,18 @@
     },
     {
         "id": "04" ,
-        "type": "petisco",
+        "type": "petiscos",
         "img": "",
         "titulo": "pastel",
         "descricao": "Molho, Frango, Catupiry, Azeitona.",
         "preco": [ 23 , 25 , 35 , 40 ]
+    },
+    {
+        "id": "05" ,
+        "type": "sucos",
+        "img": "",
+        "titulo": "soco de manga",
+        "descricao": "",
+        "preco": [ 12, 15]
     }
 ]
