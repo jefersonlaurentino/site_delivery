@@ -67,6 +67,7 @@
             <p class="bg-green-700 px-3 rounded-md my-1">Aberto de seg a dom das 18h áte 23h</p>
         </div>
     </header>
+    <!-- aside menu -->
     <aside class="w-1/2 hidden">
         <!-- <details name="menu" class="cursor-pointer p-3 ">
             <summary class="list-none border-y-2 border-black">Pizzas</summary>
@@ -83,6 +84,47 @@
             </ul>
         </details> -->
     </aside>
+    <!-- fim do aside menu -->
+
+    <!-- aside carinho -->
+    <aside id="box_carrinho" class="fixed h-screen overflow-x-hidden top-0 bg-gray-100 z-30 left-full">
+        <header class="flex border-b border-black text-2xl font-bold">
+            <button class="absolute">Voltar</button>
+            <h2 class="w-full text-center">carrinho</h2>
+        </header>
+        <main>
+            <div id="pdts_carrinho">
+                <div class="my-1 border-b border-black flex items-center">
+                    <div class="w-1/5 ml-2 rounded-md overflow-hidden">
+                        <img src="https://claudia.abril.com.br/wp-content/uploads/2020/02/receita-pizza-calabresa.jpg?quality=85&strip=info" alt="">
+                    </div>
+                    <div class="infor_carrinho w-1/2 p-2">
+                        <h3 class="font-bold text-xl">frango com catupiry</h3>
+                        <p>tamanho(P)</p>
+                    </div>
+                    <div class="qtd_items_produto flex h-7 border border-black rounded-md items-center overflow-hidden bg-slate-300">
+                        <p class="p-2">-</p>
+                        <p class="p-2 bg-white">1</p>
+                        <p class="p-2">+</p>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="obs m-2">
+                <h4 class="font-bold">Observações:</h4>
+                <textarea name="" id="" cols="40" placeholder=" Ex: "></textarea>
+            </div>
+            <div id="valor_carrinho" class="font-bold px-4 text-xl flex justify-between">
+                <p>Valor Total:</p>
+                <span>R$ 100,00</span>
+            </div>
+            <div class="flex">
+                <button class="w-1/2 m-2 p-1 rounded-md font-semibold text-xl bg-gray-300">Cancelar</button>
+                <button class="w-1/2 m-2 p-1 rounded-md font-semibold text-xl bg-green-600 text-white">Comprar</button>
+            </div>
+        </main>
+    </aside>
+    <!-- fim do aside carinho -->
     <main class="max-w-5xl m-auto">
         <div id="pizzas" class="campo_card">
             <h2 class="titulo_cmp_card">Pizzas</h2>
