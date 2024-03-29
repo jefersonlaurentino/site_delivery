@@ -3,6 +3,7 @@ let arrayCar = []
 let itemProdutos = []
 let qtdProdutos = 1
 const selecionar=(item)=>document.querySelector(item);
+const selecionarTodos=(item)=>document.querySelectorAll(item);
 
 const pizzas = selecionar("#pizzas")
 const pizzas_doces = selecionar("#pizzas_doces")
@@ -142,8 +143,20 @@ const mudarQuantidade = () =>{
 const adicionarNoCarrinho = () =>{
     selecionar('#carrinho').addEventListener('click',()=>{
         console.log('adicionado no carrinho');
+        abrirCarrinho()
+    })
+}
+
+const abrirCarrinho = () =>{
+    selecionar('#box_carrinho').classList.remove('left-full')
+}
+
+const fechaCarrinho = ()=>{
+    selecionarTodos('.voltar_carrinho').forEach((item)=>{
+        item.addEventListener('click', () => selecionar('#box_carrinho').classList.add('left-full'))
     })
 }
 
 mudarQuantidade()
 adicionarNoCarrinho()
+fechaCarrinho()
