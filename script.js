@@ -68,7 +68,7 @@ const preencheDadosmodal= (conf)=>{
     selecionar("#img").alt = conf.titulo
     box_card.querySelector(".titulo_info").innerText = conf.titulo
     box_card.querySelector(".descri_info").innerText = conf.descricao
-    if (conf.type == "petisco") {
+    if (conf.type == "petiscos" || conf.type == 'sucos') {
         box_card.querySelector(".tm").classList.add("hidden")
     } else {
         box_card.querySelector(".tm").classList.remove("hidden")
@@ -124,3 +124,26 @@ const remove_tamanho = (tm)=>{
         e.classList.remove('bg-red-600','text-white')
     })
 }
+
+const mudarQuantidade = () =>{
+    selecionar('#mais_produtos').addEventListener('click',()=>{
+        qtdProdutos++
+        selecionar('.qtd-produto').innerHTML = qtdProdutos
+    })
+
+    selecionar('#menos_produtos').addEventListener('click',()=>{
+        if (qtdProdutos > 1) {
+            qtdProdutos--
+            selecionar('.qtd-produto').innerHTML = qtdProdutos
+        }
+    })
+}
+
+const adicionarNoCarrinho = () =>{
+    selecionar('#carrinho').addEventListener('click',()=>{
+        console.log('adicionado no carrinho');
+    })
+}
+
+mudarQuantidade()
+adicionarNoCarrinho()

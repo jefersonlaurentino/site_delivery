@@ -37,6 +37,6 @@
         "img": "",
         "titulo": "soco de manga",
         "descricao": "",
-        "preco": [ 12, 15]
+        "preco": [ 12, 15 , "", ""]
     }
 ]
