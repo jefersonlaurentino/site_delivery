@@ -63,16 +63,16 @@
     </div>
     <!-- fim box card -->
 
-    <header class="flex items-center justify-between p-2 pr-6">
+    <header class="fixed w-full flex items-center justify-between p-2 pr-6 z-30 top-0 bg-white">
         <span class="menu m-1 material-symbols-outlined">
             menu
         </span>
-        <span class="carrinho relative material-symbols-outlined after:content-['05'] after:absolute after:bg-red-600 after:text-white after:text-[12px] after:-right-2 after:-top-1 after:rounded-full after:w-4 after:h-4 after:flex after:justify-center after:items-center after:font-semibold after:font-mono">
+        <span class="carrinho relative material-symbols-outlined after:content-['05'] after:absolute after:bg-red-600 after:text-white after:text-sm after:-right-3 after:-top-1 after:rounded-full after:w-5 after:h-5 after:flex after:justify-center after:items-center after:font-semibold after:font-mono">
             shopping_bag
         </span>
     </header>
 
-    <div class="bg-black text-white p-6 flex flex-col justify-center items-center">
+    <div class="bg-black text-white p-6 flex flex-col justify-center items-center pt-16">
         <div>
             <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg" alt="logo da loja." class="rounded-full w-24 h-24">
         </div>
@@ -102,7 +102,14 @@
 
     <!-- aside carinho -->
     <aside id="box_carrinho" class="fixed h-screen overflow-x-hidden top-0 bg-gray-100 z-30 left-full">
-        <header class="flex border-b border-black text-2xl font-bold">
+        <header class="voltar_carrinho flex items-center border-b border-black text-2xl font-bold p-2">
+            <div class="absolute flex items-end">
+                <span class="material-symbols-outlined">
+                chevron_left
+                </span>
+                <button>voltar</button>
+            </div>
+            
             <h2 class="w-full text-center">carrinho</h2>
         </header>
         <main >
