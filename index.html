@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site delivery</title>
     <link rel="stylesheet" href="./styles/output.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body class="bg-zinc-200">
 
@@ -36,11 +37,15 @@
                 </div>
             </div>
             <h2>Escolha o tamanho:</h2>
-            <div class="tm flex rounded-lg overflow-hidden font-bold bg-gray-200 cursor-pointer mt-2">
+            <div id="tm_4" class="tm flex rounded-lg overflow-hidden font-bold bg-gray-200 cursor-pointer mt-2">
                 <p id="0" class="tm_p p-1 w-1/4 bg-red-600 text-white  text-center border-r-2 border-black">P</p>
                 <p id="1" class="tm_p p-1 w-1/4 text-center border-r-2 border-black">M</p>
                 <p id="2" class="tm_p p-1 w-1/4 text-center border-r-2 border-black">G</p>
                 <p id="3" class="tm_p p-1 w-1/4 text-center">GG</p>
+            </div>
+            <div id="tm_2" class="w-1/2 tm flex rounded-lg overflow-hidden font-bold bg-gray-200 cursor-pointer mt-2">
+                <p id="0" class="tm_p p-1 w-1/2 bg-red-600 text-white  text-center border-r-2 border-black">sem leite</p>
+                <p id="1" class="tm_p p-1 w-1/2 text-center">com leite</p>
             </div>
             <div class="flex m-3 h-9 justify-between font-semibold text-2xl">
                 <p class="" id="preco"></p>
@@ -58,7 +63,16 @@
     </div>
     <!-- fim box card -->
 
-    <header class="bg-black text-white p-6 flex flex-col justify-center items-center">
+    <header class="flex items-center justify-between p-2 pr-6">
+        <span class="menu m-1 material-symbols-outlined">
+            menu
+        </span>
+        <span class="carrinho relative material-symbols-outlined after:content-['05'] after:absolute after:bg-red-600 after:text-white after:text-[12px] after:-right-2 after:-top-1 after:rounded-full after:w-4 after:h-4 after:flex after:justify-center after:items-center after:font-semibold after:font-mono">
+            shopping_bag
+        </span>
+    </header>
+
+    <div class="bg-black text-white p-6 flex flex-col justify-center items-center">
         <div>
             <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg" alt="logo da loja." class="rounded-full w-24 h-24">
         </div>
@@ -66,7 +80,7 @@
             <p>Rua Wanderley Agra de Azevedo.</p>
             <p class="bg-green-700 px-3 rounded-md my-1">Aberto de seg a dom das 18h áte 23h</p>
         </div>
-    </header>
+    </div>
     <!-- aside menu -->
     <aside class="w-1/2 hidden">
         <!-- <details name="menu" class="cursor-pointer p-3 ">
@@ -92,7 +106,7 @@
             <button class="voltar_carrinho absolute">Voltar</button>
             <h2 class="w-full text-center">carrinho</h2>
         </header>
-        <main>
+        <main class="p-2">
             <div id="pdts_carrinho">
                 <div class="my-1 border-b border-black flex items-center">
                     <div class="w-1/5 ml-2 rounded-md overflow-hidden">

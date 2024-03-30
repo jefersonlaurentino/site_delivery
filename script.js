@@ -53,6 +53,7 @@ const preencheDadosProdutos= (produto, conf, index) =>{
         pizzas_doces.appendChild(produto)
     } else if (conf.type == "sucos") {
         sucos.appendChild(produto)
+        sucos.querySelector('.span_preco').remove()
     } else {
         petiscos.appendChild(produto)
     }
@@ -69,10 +70,17 @@ const preencheDadosmodal= (conf)=>{
     selecionar("#img").alt = conf.titulo
     box_card.querySelector(".titulo_info").innerText = conf.titulo
     box_card.querySelector(".descri_info").innerText = conf.descricao
-    if (conf.type == "petiscos" || conf.type == 'sucos') {
-        box_card.querySelector(".tm").classList.add("hidden")
+    if (conf.type == "petiscos") {
+        box_card.querySelector("#tm_4").classList.add("hidden")
+        box_card.querySelector("#tm_2").classList.add("hidden")
+    } else if (conf.type == 'sucos') {
+        selecionar('#tm_4').querySelectorAll('p').forEach((item)=>item.classList.remove('tm_p'))
+        box_card.querySelector("#tm_2").classList.remove("hidden")
+        box_card.querySelector("#tm_4").classList.add("hidden")
     } else {
-        box_card.querySelector(".tm").classList.remove("hidden")
+        selecionar('#tm_4').querySelectorAll('p').forEach((item)=>item.classList.add('tm_p'))
+        box_card.querySelector("#tm_4").classList.remove("hidden")
+        box_card.querySelector("#tm_2").classList.add("hidden")
     }
     selecionar("#preco").innerText = formatoReal(conf.preco[0])
     
@@ -90,19 +98,19 @@ const key = (e) =>{
 
 const preencherTamanhos=() =>{
     
-    document.querySelectorAll('.tm_p').forEach((size,sizeindex)=>{
+    document.querySelectorAll('.tm_p').forEach((size)=>{
         size.classList.remove('bg-red-600','text-white');
-        (sizeindex == 0) ? size.classList.add('bg-red-600','text-white') : ''
+        (size.id == 0) ? size.classList.add('bg-red-600','text-white') : ''
     });
 }
 
 const escolherTamanhoPreco=(chave)=>{
-    document.querySelectorAll('.tm_p').forEach((size , sizeindex)=>{
+    document.querySelectorAll('.tm_p').forEach((size)=>{
         size.addEventListener('click',()=>{
             selecionar('.tm_p.bg-red-600').classList.remove('bg-red-600','text-white')
             size.classList.add('bg-red-600','text-white')
 
-            selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[sizeindex])
+            selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[size.id])
         })
     })
 }
