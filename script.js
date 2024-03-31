@@ -99,16 +99,16 @@ const key = (e) =>{
 const preencherTamanhos=() =>{
     
     document.querySelectorAll('.tm_p').forEach((size)=>{
-        size.classList.remove('bg-red-600','text-white');
-        (size.id == 0) ? size.classList.add('bg-red-600','text-white') : ''
+        size.classList.remove('selected');
+        (size.id == 0) ? size.classList.add('selected') : ''
     });
 }
 
 const escolherTamanhoPreco=(chave)=>{
     document.querySelectorAll('.tm_p').forEach((size)=>{
         size.addEventListener('click',()=>{
-            selecionar('.tm_p.bg-red-600').classList.remove('bg-red-600','text-white')
-            size.classList.add('bg-red-600','text-white')
+            selecionar('.tm_p.selected').classList.remove('selected')
+            size.classList.add('selected')
 
             selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[size.id])
         })
@@ -151,8 +151,39 @@ const mudarQuantidade = () =>{
 const adicionarNoCarrinho = () =>{
     selecionar('#carrinho').addEventListener('click',()=>{
         console.log('adicionado no carrinho');
-        abrirCarrinho()
+
+        let size = selecionar('.tm_p.selected').getAttribute('data-key')
+
+        let preco = selecionar('#preco').innerHTML.replace('R$&nbsp;','')
+
+        let identifica = itemProdutos[modalkey].id+'t'+size
+
+        let chave = arrayCar.findIndex((item)=>item.identifica == identifica)
+
+        if (chave > -1) {
+            arrayCar[chave].qt += qtdProdutos
+            console.log(qtdProdutos);
+        } else {
+            let item = {
+                identifica,
+                id: itemProdutos[modalkey].id,
+                size,
+                qt: qtdProdutos,
+                preco: parseFloat(preco)
+            }
+            arrayCar.push(item)
+            console.log(preco);
+            console.log(arrayCar);
+            console.log(`sub total R$ ${(item.qt * item.preco).toFixed(2)}`);
+        }
+
+        fechaJanela()
+        atualizaCarrinho()
     })
+}
+
+const atualizaCarrinho = () =>{
+    selecionar('.carrinho').dataset.content = (arrayCar.length < 10) ? `0${arrayCar.length}` : arrayCar.length 
 }
 
 const abrirCarrinho = () =>{
@@ -166,5 +197,6 @@ const fechaCarrinho = ()=>{
 }
 
 mudarQuantidade()
+selecionar('.carrinho').addEventListener('click',()=>abrirCarrinho())
 adicionarNoCarrinho()
 fechaCarrinho()

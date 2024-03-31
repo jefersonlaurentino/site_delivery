@@ -27,4 +27,8 @@
     .span_preco {
         @apply right-1;
     }
+
+    .selected {
+        @apply bg-red-600 text-white;
+    }
 }
