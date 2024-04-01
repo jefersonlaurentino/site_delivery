@@ -184,10 +184,60 @@ const adicionarNoCarrinho = () =>{
 
 const atualizaCarrinho = () =>{
     selecionar('.carrinho').dataset.content = (arrayCar.length < 10) ? `0${arrayCar.length}` : arrayCar.length 
+
+    if (arrayCar.length > 0) {
+
+        selecionar('#pdts_carrinho').innerHTML = ''
+
+        let subTotal = 0
+        let total = 0
+
+        for (let i in arrayCar) {
+            let produtoItem = itemProdutos.find((item) =>item.id == arrayCar[i].id)
+
+            subTotal += arrayCar[i].preco * arrayCar[i].qt
+
+            let cardItem = selecionar('.card_item').cloneNode(true)
+            selecionar('#pdts_carrinho').append(cardItem)
+
+            let itemSizeName = arrayCar[i].size
+            
+            let itemName = `${produtoItem.titulo} (${itemSizeName})`
+
+            cardItem.querySelector('img').src = produtoItem.img
+            cardItem.querySelector('img').alt = produtoItem.titulo
+            cardItem.querySelector('.titulo').innerHTML = itemName
+            cardItem.querySelector('.qt').innerHTML = arrayCar[i].qt
+
+            cardItem.querySelector('.qt_mais').addEventListener('click',()=>{
+                arrayCar[i].qt++
+                atualizaCarrinho()
+            })
+
+            cardItem.querySelector('.qt_menos').addEventListener('click',()=>{
+                if (arrayCar[i].qt > 1) {
+                    arrayCar[i].qt--
+                } else {
+                    arrayCar.splice(i,1)
+                }
+
+                atualizaCarrinho()
+            })
+
+            selecionar('#pdts_carrinho').append(cardItem)
+        }
+
+        total = subTotal
+        selecionar('#valor_carrinho span').innerHTML = formatoReal(total)
+    } else {
+        selecionar('#box_carrinho').classList.add('left-full')
+    }
 }
 
 const abrirCarrinho = () =>{
-    selecionar('#box_carrinho').classList.remove('left-full')
+    if (arrayCar.length > 0) {
+        selecionar('#box_carrinho').classList.remove('left-full')
+    }
 }
 
 const fechaCarrinho = ()=>{
@@ -199,4 +249,5 @@ const fechaCarrinho = ()=>{
 mudarQuantidade()
 selecionar('.carrinho').addEventListener('click',()=>abrirCarrinho())
 adicionarNoCarrinho()
+atualizaCarrinho()
 fechaCarrinho()
