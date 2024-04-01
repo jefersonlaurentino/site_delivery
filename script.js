@@ -21,6 +21,7 @@ const selecionar=(item)=>document.querySelector(item);
 const selecionarTodos=(item)=>document.querySelectorAll(item);
 
 const pizzas = selecionar("#pizzas")
+const pizzas_especiais = selecionar("#pizzas_especiais")
 const pizzas_doces = selecionar("#pizzas_doces")
 const petiscos = selecionar("#petiscos")
 const sucos = selecionar("#sucos")
@@ -64,7 +65,9 @@ const preencheDadosProdutos= (produto, conf, index) =>{
     produto.querySelector(".preco_info").innerText = formatoReal(conf.preco[0])
     if (conf.type == "pizza") {
         pizzas.appendChild(produto)
-    } else if (conf.type == "pizza_doce") {
+    } else if (conf.type == "pizzas_especiais") {
+        pizzas_especiais.appendChild(produto)
+    } else if (conf.type == "pizzas_doces") {
         pizzas_doces.appendChild(produto)
     } else if (conf.type == "sucos") {
         sucos.appendChild(produto)

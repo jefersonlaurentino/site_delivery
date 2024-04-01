@@ -1,42 +1,258 @@
 [
     {
         "id": "01" ,
-        "type": "pizza_doce",
+        "type": "pizza",
         "img": "https://claudia.abril.com.br/wp-content/uploads/2020/02/receita-pizza-calabresa.jpg?quality=85&strip=info",
         "titulo": "Calabresa",
-        "descricao": "Molho, Calabresa, Cebola, Queijo, Azeitona.",
-        "preco": [ 21 , 25 , 34 , 38 ]
+        "descricao": "Molho, mussarela, Calabresa, Cebola, orégano e Azeitona.",
+        "preco": [ 21 , 27 , 34 , 40 ]
     },
     {
         "id": "02" ,
         "type": "pizza",
-        "img": "https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg",
-        "titulo": "Carne de sol",
-        "descricao": "Molho, Carne de sol, Cebola, Queijo, Azeitona.",
-        "preco": [ 23 , 25 , 35 , 40 ]
+        "img": "",
+        "titulo": "Frango",
+        "descricao": "Molho, mussarela, frango, milho, ervilha e orégano.",
+        "preco": [ 20 , 26 , 33 , 40 ]
     },
     {
         "id": "03" ,
         "type": "pizza",
         "img": "https://receitas123.com/wp-content/uploads/2023/05/pizza-de-frango-com-catupiry.png",
         "titulo": "Frango com Catupiry",
-        "descricao": "Molho, Frango, Catupiry, Azeitona.",
-        "preco": [ 23 , 25 , 35 , 40 ]
+        "descricao": "Molho, mussarela, Frango, Catupiry, milho e orégano.",
+        "preco": [ 22 , 27 , 33 , 40 ]
     },
     {
         "id": "04" ,
-        "type": "petiscos",
+        "type": "pizza",
         "img": "",
-        "titulo": "pastel",
-        "descricao": "Molho, Frango, Catupiry, Azeitona.",
-        "preco": [ 23 , 25 , 35 , 40 ]
+        "titulo": "Brasileira",
+        "descricao": "Molho, mussarela, calabresa, tomate, cebola e orégano.",
+        "preco": [ 20 , 26 , 33 , 40 ]
     },
     {
         "id": "05" ,
-        "type": "sucos",
+        "type": "pizza",
         "img": "",
-        "titulo": "soco de manga",
-        "descricao": "",
-        "preco": [ 12, 15 , "", ""]
+        "titulo": "Mista",
+        "descricao": "Molho, mussarela, presunto, tomate e orégano.",
+        "preco": [ 22 , 27 , 33 , 40 ]
+    },
+    {
+        "id": "06" ,
+        "type": "pizza",
+        "img": "",
+        "titulo": "Marguerita",
+        "descricao": "Molho, mussarela, tomate, manjerição, orégano e azeitona.",
+        "preco": [ 22 , 27 , 33 , 40 ]
+    },
+    {
+        "id": "07" ,
+        "type": "pizza",
+        "img": "",
+        "titulo": "Mussarela",
+        "descricao": "Molho, mussarela e orégano.",
+        "preco": [ 22 , 27 , 33 , 40 ]
+    },
+    {
+        "id": "08" ,
+        "type": "pizza",
+        "img": "",
+        "titulo": "Baiana",
+        "descricao": "Molho, mussarela, calabresa, ovo, cebola, pimentão, milho, pimenta e orégano.",
+        "preco": [ 22 , 27 , 33 , 40 ]
+    },
+    {
+        "id": "09" ,
+        "type": "pizza",
+        "img": "",
+        "titulo": "Siciliana",
+        "descricao": "Molho, bacon, calabresa, mussarela, palmito e catypiry.",
+        "preco": [ 22 , 28 , 37 , 44 ]
+    },
+    {
+        "id": "10" ,
+        "type": "pizza",
+        "img": "",
+        "titulo": "4 Queijos",
+        "descricao": "Molho, mussarela, gorgonzola,catupiry, queijo provola e orégano.",
+        "preco": [ 22 , 28 , 37 , 44 ]
+    },
+    {
+        "id": "11" ,
+        "type": "pizza",
+        "img": "",
+        "titulo": "Portuguesa",
+        "descricao": "Molho, mussarela, presunto, ovo, cebola roxa, tomate, pimentão, calabresa e milho.",
+        "preco": [ 22 , 27 , 34 , 42 ]
+    },
+    {
+        "id": "12" ,
+        "type": "pizzas_especiais",
+        "img": "",
+        "titulo": "Filadélfia de frango",
+        "descricao": "Molho, mussarela, frango, bacon, cream cheese, orégano e azeitona.",
+        "preco": [ 25 , 30 , 38 , 46 ]
+    },
+    {
+        "id": "13" ,
+        "type": "pizzas_especiais",
+        "img": "",
+        "titulo": "Sertaneija",
+        "descricao": "Molho, mussarela, carne de sol, queijo coalho e pimentão.",
+        "preco": [ 25 , 30 , 38 , 45 ]
+    },
+    {
+        "id": "14" ,
+        "type": "pizzas_especiais",
+        "img": "",
+        "titulo": "Camarão",
+        "descricao": "Molho, mussarela, camarão, cream cheese e orégano.",
+        "preco": [ 25 , 30 , 39 , 47 ]
+    },
+    {
+        "id": "15" ,
+        "type": "pizzas_especiais",
+        "img": "",
+        "titulo": "Moda da casa",
+        "descricao": "Molho, mussarela, peito de peru, bacon e cream cheese.",
+        "preco": [ 25 , 30 , 39 , 46 ]
+    },
+    {
+        "id": "16" ,
+        "type": "pizzas_especiais",
+        "img": "",
+        "titulo": "Nordestina",
+        "descricao": "Molho, mussarela, carne de sol, queijo coalho, ovo, cream cheese, tomate e cebola roxa.",
+        "preco": [ 25 , 30 , 39 , 46 ]
+    },
+    {
+        "id": "17" ,
+        "type": "pizzas_especiais",
+        "img": "",
+        "titulo": "Filadélfia",
+        "descricao": "Molho, mussarela, carne de sol, nata, bacon, cream cheese, cebola roxa, orégano e azeitona.",
+        "preco": [ 25 , 30 , 39 , 46 ]
+    },
+    {
+        "id": "18" ,
+        "type": "pizzas_especiais",
+        "img": "",
+        "titulo": "Lombo canadense",
+        "descricao": "Molho, mussarela, lombo canadense e catupiry.",
+        "preco": [ 25 , 30 , 38 , 45 ]
+    },
+    {
+        "id": "19" ,
+        "type": "pizzas_especiais",
+        "img": "",
+        "titulo": "Carne de sol na nata",
+        "descricao": "Molho, queijo coalho, carne de sol, cebola roxa e nata.",
+        "preco": [ 24 , 30 , 38 , 45 ]
+    },
+    {
+        "id": "20" ,
+        "type": "pizzas_especiais",
+        "img": "",
+        "titulo": "Grega",
+        "descricao": "Molho, mussarela, presunto, bacon, e palmito.",
+        "preco": [ 25 , 28 , 37 , 44 ]
+    },
+    {
+        "id": "21" ,
+        "type": "pizzas_especiais",
+        "img": "",
+        "titulo": "Filé c/ fritas c/ borda vulção",
+        "descricao": "Molho, mussarela, file mignon, batata frita, orégano e azeitona.",
+        "preco": [ 25 , 30 , 39 , 47 ]
+    },
+    {
+        "id": "22" ,
+        "type": "pizzas_especiais",
+        "img": "",
+        "titulo": "Moda do chefe",
+        "descricao": "Molho, mussarela, bacon, batata e cheddar.",
+        "preco": [ 25 , 30 , 38 , 45 ]
+    },
+    {
+        "id": "23" ,
+        "type": "pizzas_doces",
+        "img": "",
+        "titulo": "Mesclado",
+        "descricao": "Creme de leite, chocolate braco, chocolate de avelã.",
+        "preco": [ 22 , 27 , 34 , 42 ]
+    },
+    {
+        "id": "24" ,
+        "type": "pizzas_doces",
+        "img": "",
+        "titulo": "Chocolate com morango",
+        "descricao": "Mussarela, chocolate ao leite, morango e Creme de leite.",
+        "preco": [ 25 , 30 , 37 , 44 ]
+    },
+    {
+        "id": "25" ,
+        "type": "pizzas_doces",
+        "img": "",
+        "titulo": "Chocolate com banana",
+        "descricao": "Mussarela, chocolate ao leite, banana e creme de leite.",
+        "preco": [ 22 , 27 , 34 , 42 ]
+    },
+    {
+        "id": "26" ,
+        "type": "pizzas_doces",
+        "img": "",
+        "titulo": "Banana nevada",
+        "descricao": "Mussarela, banana, açucar, canela em pó, Creme de leite e chocolate braco ao leite.",
+        "preco": [ 25 , 30 , 36 , 42 ]
+    },
+    {
+        "id": "27" ,
+        "type": "pizzas_doces",
+        "img": "",
+        "titulo": "Prestígio",
+        "descricao": "Mussarela, chocolate e coco ralado.",
+        "preco": [ 22 , 26 , 35 , 42 ]
+    },
+    {
+        "id": "28" ,
+        "type": "pizzas_doces",
+        "img": "",
+        "titulo": "Chocolate com M&M",
+        "descricao": "Creme de leite, mussarela, chocolate.",
+        "preco": [ 22 , 26 , 35 , 40 ]
+    },
+    {
+        "id": "29" ,
+        "type": "pizzas_doces",
+        "img": "",
+        "titulo": "Romeu e julieta",
+        "descricao": "Creme de leite, mussarela, doce de goiaba e queijo ralado.",
+        "preco": [ 22 , 28 , 37 , 44 ]
+    },
+    {
+        "id": "30" ,
+        "type": "pizzas_doces",
+        "img": "",
+        "titulo": "Oreo",
+        "descricao": "Molho, Creme de leite, chocolate braco, chocolate ao leite e biscoito oreo.",
+        "preco": [ 22 , 28 , 36 , 42 ]
+    },
+    {
+        "id": "31" ,
+        "type": "pizzas_doces",
+        "img": "",
+        "titulo": "Ouro braco",
+        "descricao": "Creme de leite, chocolate braco, chocolate ao leite e ouro branco.",
+        "preco": [ 23 , 30 , 36 , 42 ]
+    },
+    {
+        "id": "32" ,
+        "type": "pizzas_doces",
+        "img": "",
+        "titulo": "2 Amores",
+        "descricao": "Chocolate braco e geleia de morango.",
+        "preco": [ 22 , 26 , 32 , 40 ]
     }
 ]
