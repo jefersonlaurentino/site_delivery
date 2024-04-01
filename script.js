@@ -1,5 +1,20 @@
 let modalkey = 0
 let arrayCar = []
+let arrayBordas = [
+        {
+            "p": [ 6 , 2 , 2 , 6 ]
+        },
+        {
+            "m": [ 6 , 2 , 2 , 6 ]
+        },
+        {
+            "g": [ 10 , 4 , 4 , 10 ]
+        },
+        {
+            "gg": [ 12 , 5 , 5 , 12 ]
+        }
+    ]
+let chaveIndex = 2
 let itemProdutos = []
 let qtdProdutos = 1
 const selecionar=(item)=>document.querySelector(item);
@@ -70,6 +85,20 @@ const preencheDadosmodal= (conf)=>{
     selecionar("#img").alt = conf.titulo
     box_card.querySelector(".titulo_info").innerText = conf.titulo
     box_card.querySelector(".descri_info").innerText = conf.descricao
+
+    // box_card.querySelectorAll('input[type="radio"]').forEach((item)=>{
+    //     item.addEventListener('click',()=>{
+    //         if (item.id == 'sim') {
+    //             box_card.querySelector('.select').classList.remove('hidden')
+    //             selecionar('#list_bordas').addEventListener('change',(item)=>{
+    //                 chaveIndex = item.target.value
+    //                 selecionar("#preco").innerText = formatoReal(conf.preco[0]+chaveIndex)
+    //             })
+    //         } else {
+    //             box_card.querySelector('.select').classList.add('hidden')
+    //         }
+    //     })
+    // })
     if (conf.type == "petiscos") {
         box_card.querySelector("#tm_4").classList.add("hidden")
         box_card.querySelector("#tm_2").classList.add("hidden")
@@ -83,7 +112,6 @@ const preencheDadosmodal= (conf)=>{
         box_card.querySelector("#tm_2").classList.add("hidden")
     }
     selecionar("#preco").innerText = formatoReal(conf.preco[0])
-    
 }
 
 const key = (e) =>{
@@ -205,8 +233,13 @@ const atualizaCarrinho = () =>{
             let itemName = `${produtoItem.titulo} (${itemSizeName})`
 
             cardItem.querySelector('img').src = produtoItem.img
-            cardItem.querySelector('img').alt = produtoItem.titulo
-            cardItem.querySelector('.titulo').innerHTML = itemName
+            cardItem.querySelector('img').alt = produtoItem.titul
+            cardItem.querySelector('.titulo').innerHTML = produtoItem.titulo
+            if (produtoItem.type == 'petiscos') {
+                cardItem.querySelector('.descricao').innerHTML = ''
+            } else {
+                cardItem.querySelector('.descricao').innerHTML = `(${itemSizeName})`
+            }
             cardItem.querySelector('.qt').innerHTML = arrayCar[i].qt
 
             cardItem.querySelector('.qt_mais').addEventListener('click',()=>{

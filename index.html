@@ -36,16 +36,35 @@
                     <p class="descri_info"></p>
                 </div>
             </div>
-            <h2>Escolha o tamanho:</h2>
-            <div id="tm_4" class="tm flex rounded-lg overflow-hidden font-bold bg-gray-200 cursor-pointer mt-2">
-                <p id="0" data-key="P" class="tm_p p-1 w-1/4  text-center border-r-2 border-black">P</p>
-                <p id="1" data-key="M" class="tm_p p-1 w-1/4 text-center border-r-2 border-black">M</p>
-                <p id="2" data-key="G" class="tm_p p-1 w-1/4 text-center border-r-2 border-black">G</p>
-                <p id="3" data-key="GG" class="tm_p p-1 w-1/4 text-center">GG</p>
+            <div id="tm_4">
+                <h2>Escolha o tamanho:</h2>
+                <div class="tm flex rounded-lg overflow-hidden font-bold bg-gray-200 cursor-pointer my-2">
+                    <p id="0" data-key="P" class="tm_p p-1 w-1/4  text-center border-r-2 border-black">P</p>
+                    <p id="1" data-key="M" class="tm_p p-1 w-1/4 text-center border-r-2 border-black">M</p>
+                    <p id="2" data-key="G" class="tm_p p-1 w-1/4 text-center border-r-2 border-black">G</p>
+                    <p id="3" data-key="GG" class="tm_p p-1 w-1/4 text-center">GG</p>
+                </div>
+                <h2>Adicionar borda recheada?</h2>
+                <input type="radio" name="borda" id="nao" checked>
+                <label for="nao">Não</label>
+                <input type="radio" name="borda" id="sim">
+                <label for="sim">Sim</label>
+                <div class="select hidden">
+                    <select name="borda" id="list_bordas" class="border-gray-200 border-2 rounded-md">
+                        <option value="" selected disabled>selecione a borda</option>
+                        <option value="0">chocolate</option>
+                        <option value="1">cheddar</option>
+                        <option value="2">catupiry</option>
+                        <option value="3">cream cheese</option>
+                    </select>
+                </div>
             </div>
-            <div id="tm_2" class="w-1/2 tm flex rounded-lg overflow-hidden font-bold bg-gray-200 cursor-pointer mt-2">
-                <p id="0" data-key="P" class="tm_p p-1 w-1/2 text-center border-r-2 border-black">sem leite</p>
-                <p id="1" data-key="M" class="tm_p p-1 w-1/2 text-center">com leite</p>
+            <div id="tm_2">
+                <h2>Escolha:</h2>
+                <div class="w-1/2 tm flex rounded-lg overflow-hidden font-bold bg-gray-200 cursor-pointer mt-2">
+                    <p id="0" data-key="sem leite" class="tm_p p-1 w-1/2 text-center border-r-2 border-black">sem leite</p>
+                    <p id="1" data-key="com leite" class="tm_p p-1 w-1/2 text-center">com leite</p>
+                </div>
             </div>
             <div class="flex m-3 h-9 justify-between font-semibold text-2xl">
                 <p class="" id="preco"></p>
@@ -101,7 +120,7 @@
     <!-- fim do aside menu -->
 
     <!-- aside carinho -->
-    <aside id="box_carrinho" class="fixed h-screen overflow-x-hidden top-0 bg-gray-100 z-30 left-full">
+    <aside id="box_carrinho" class="fixed h-screen w-full overflow-x-hidden top-0 bg-gray-100 z-30 left-full">
         <header class="voltar_carrinho flex items-center border-b border-black text-2xl font-bold p-2">
             <div class="absolute flex items-end">
                 <span class="material-symbols-outlined">
@@ -135,11 +154,11 @@
             </div>
             <div class="obs m-2">
                 <h4 class="font-bold">Observações:</h4>
-                <textarea name="" id="" cols="10" placeholder=" Ex: "></textarea>
+                <textarea name="" id="" placeholder=" Ex: " rows="3" class="w-full px-2 resize-none"></textarea>
             </div>
             <div id="valor_carrinho" class="font-bold px-4 text-xl flex justify-between">
                 <p>Valor Total:</p>
-                <span>R$ 100,00</span>
+                <span>R$ --</span>
             </div>
             <div class="flex">
                 <button class="voltar_carrinho w-1/2 m-2 p-1 rounded-md font-semibold text-xl bg-gray-300">Cancelar</button>
