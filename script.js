@@ -51,6 +51,8 @@ fetch(apiProdutos)
             selecionar('.qtd-produto').innerHTML = qtdProdutos
             
             escolherTamanhoPreco(chave)
+
+            escolherBorda()
         })
 
         btnFechar()
@@ -125,7 +127,6 @@ const preencherTamanhos=() =>{
 }
 
 const escolherTamanhoPreco=(chave)=>{
-    let teste = null
     document.querySelectorAll('.tm_p').forEach((size)=>{
         size.addEventListener('click',()=>{
             selecionar('.tm_p.selected').classList.remove('selected')
@@ -133,40 +134,21 @@ const escolherTamanhoPreco=(chave)=>{
 
             selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[size.id])
 
-            teste = size.id
+            // let teste = selecionar('#list_bordas')
+            // console.log(teste.value == '');
         })
     })
-let index = 0
-let size = ''
-    box_card.querySelector('#sim').addEventListener('click',()=>{
-        selecionar('.select').classList.remove('hidden')
-        selecionar('#list_bordas').addEventListener('change',(e)=>{
-            let borda = e.target.value
-            if (teste != null) {
-                index = teste
-            }
-            if (index == 1) {
-                size = 'm'
-            } else if (index == 2) {
-                size = 'g'
-            } else if (index == 3) {
-                size = 'gg'
-            }
+}
 
-            console.log(size);
-            console.log(itemProdutos[chave]);
-            console.log(itemProdutos[chave].preco[index]);
-            // console.log(`pizza ${itemProdutos[chave].titulo} com borda ${arrayBordas[0][borda]}`);
-            // arrayBordas[0].p[borda]
-            let tes = 
-            selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[index] + arrayBordas[index][0][borda])
+const escolherBorda = () =>{
+    selecionarTodos('input[type="radio"]').forEach((item)=>{
+        item.addEventListener('click',(el)=>{
+            if (el.target.id == 'sim') {
+                selecionar('.select').classList.remove('hidden')
+            } else {
+                selecionar('.select').classList.add('hidden')
+            }
         })
-    })
-
-    box_card.querySelector('#nao').addEventListener('click',()=>{
-        selecionar('.select').classList.add('hidden')
-        index = 0
-        selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[teste])
     })
 }
 
@@ -176,6 +158,21 @@ const abriJanela = () =>{
 
 const fechaJanela = () =>{
     box_card.classList.add("hidden")
+    selecionarTodos('input[type="radio"]').forEach((item)=>{
+        if (item.id == 'sim') {
+            item.checked = false
+            selecionarTodos('option').forEach((item)=>{
+                if (item.selected) {
+                    item.selected = false
+                } else if (item.value == '') {
+                    item.selected = true
+                }
+            })
+        } else {
+            item.checked = true
+        }
+    })
+    
     selecionar('.select').classList.add('hidden')
     modalkey = 0
 }

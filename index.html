@@ -44,19 +44,21 @@
                     <p id="2" data-key="G" class="tm_p p-1 w-1/4 text-center border-r-2 border-black">G</p>
                     <p id="3" data-key="GG" class="tm_p p-1 w-1/4 text-center">GG</p>
                 </div>
-                <h2>Adicionar borda recheada?</h2>
-                <input type="radio" name="borda" id="nao" >
-                <label for="nao">Não</label>
-                <input type="radio" name="borda" id="sim">
-                <label for="sim">Sim</label>
-                <div class="select hidden">
-                    <select name="borda" id="list_bordas" class="border-gray-200 border-2 rounded-md">
-                        <option value="" selected disabled>selecione a borda</option>
-                        <option value="0">chocolate</option>
-                        <option value="1">cheddar</option>
-                        <option value="2">catupiry</option>
-                        <option value="3">cream cheese</option>
-                    </select>
+                <div>
+                    <h2>Adicionar borda recheada?</h2>
+                    <input type="radio" name="borda" id="nao" checked>
+                    <label for="nao">Não</label>
+                    <input type="radio" name="borda" id="sim">
+                    <label for="sim">Sim</label>
+                    <div class="select hidden">
+                        <select name="borda" id="list_bordas" class="border-gray-200 border-2 rounded-md">
+                            <option value="" selected disabled>selecione a borda</option>
+                            <option value="0">chocolate</option>
+                            <option value="1">cheddar</option>
+                            <option value="2">catupiry</option>
+                            <option value="3">cream cheese</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div id="tm_2">
@@ -67,7 +69,10 @@
                 </div>
             </div>
             <div class="flex m-3 h-9 justify-between font-semibold text-2xl">
-                <p class="" id="preco"></p>
+                <div class="flex">
+                    <p class="" id="preco"></p>
+                    <span id="borda"> + R$ 6,00</span>
+                </div>
                 <div class="flex">
                     <div id="menos_produtos" class="bg-gray-300 px-2 text-sm font-bold cursor-pointer">-</div>
                     <div class="qtd-produto bg-white border-2 px-2 text-sm font-bold"></div>
