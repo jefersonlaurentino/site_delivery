@@ -1,26 +1,26 @@
 let modalkey = 0
 let arrayCar = []
 let arrayBordas = [
-        {
-            0: [ 6 , 2 , 2 , 6 ]
-        },
-        {
-            0: [ 6 , 2 , 2 , 6 ]
-        },
-        {
-            0: [ 10 , 4 , 4 , 10 ]
-        },
-        {
-            0: [ 12 , 5 , 5 , 12 ]
-        }
-    ]
-    console.log(arrayBordas);
-    console.log(arrayBordas[1][0][2]);
+    {
+        0: [6, 2, 2, 6]
+    },
+    {
+        0: [6, 2, 2, 6]
+    },
+    {
+        0: [10, 4, 4, 10]
+    },
+    {
+        0: [12, 5, 5, 12]
+    }
+]
+console.log(arrayBordas);
+console.log(arrayBordas[1][0][2]);
 let chaveIndex = 2
 let itemProdutos = []
 let qtdProdutos = 1
-const selecionar=(item)=>document.querySelector(item);
-const selecionarTodos=(item)=>document.querySelectorAll(item);
+const selecionar = (item) => document.querySelector(item);
+const selecionarTodos = (item) => document.querySelectorAll(item);
 
 const pizzas = selecionar("#pizzas")
 const pizzas_especiais = selecionar("#pizzas_especiais")
@@ -31,35 +31,35 @@ const box_card = selecionar("#box_card")
 
 const apiProdutos = "lista_produtos.json"
 fetch(apiProdutos)
-.then(res => res.json())
-.then(res =>{
-    itemProdutos = res
-    res.forEach((el,index) => {
-        const produto = selecionar(".card").cloneNode(true);
-        
-        preencheDadosProdutos(produto, el, index)
+    .then(res => res.json())
+    .then(res => {
+        itemProdutos = res
+        res.forEach((el, index) => {
+            const produto = selecionar(".card").cloneNode(true);
 
-        produto.addEventListener('click',(e)=>{
-            let chave = key(e)
+            preencheDadosProdutos(produto, el, index)
 
-            abriJanela()
+            produto.addEventListener('click', (e) => {
+                let chave = key(e)
 
-            preencheDadosmodal(el)
+                abriJanela()
 
-            preencherTamanhos(chave)
+                preencheDadosmodal(el)
 
-            selecionar('.qtd-produto').innerHTML = qtdProdutos
-            
-            escolherTamanhoPreco(chave)
+                preencherTamanhos(chave)
 
-            escolherBorda()
-        })
+                selecionar('.qtd-produto').innerHTML = qtdProdutos
 
-        btnFechar()
-    });
-})
+                escolherTamanhoPreco(chave)
 
-const preencheDadosProdutos= (produto, conf, index) =>{
+                escolherBorda()
+            })
+
+            btnFechar()
+        });
+    })
+
+const preencheDadosProdutos = (produto, conf, index) => {
     produto.classList.remove("hidden")
     produto.setAttribute("data-key", index)
     produto.querySelector(".img").src = conf.img
@@ -81,13 +81,13 @@ const preencheDadosProdutos= (produto, conf, index) =>{
     }
 }
 
-const formatoReal = (valor) =>{
-    return valor.toLocaleString('pt-br',{ style: 'currency',currency: 'BRL'})
+const formatoReal = (valor) => {
+    return valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
 }
 
 // abre e fecha janela 
-const preencheDadosmodal= (conf)=>{
-    box_card.firstElementChild.setAttribute('id',conf.id) 
+const preencheDadosmodal = (conf) => {
+    box_card.firstElementChild.setAttribute('id', conf.id)
     selecionar("#img").src = conf.img
     selecionar("#img").alt = conf.titulo
     box_card.querySelector(".titulo_info").innerText = conf.titulo
@@ -97,20 +97,20 @@ const preencheDadosmodal= (conf)=>{
         box_card.querySelector("#tm_4").classList.add("hidden")
         box_card.querySelector("#tm_2").classList.add("hidden")
     } else if (conf.type == 'sucos') {
-        selecionar('#tm_4').querySelectorAll('p').forEach((item)=>item.classList.remove('tm_p'))
+        selecionar('#tm_4').querySelectorAll('p').forEach((item) => item.classList.remove('tm_p'))
         box_card.querySelector("#tm_2").classList.remove("hidden")
         box_card.querySelector("#tm_4").classList.add("hidden")
     } else {
-        selecionar('#tm_4').querySelectorAll('p').forEach((item)=>item.classList.add('tm_p'))
+        selecionar('#tm_4').querySelectorAll('p').forEach((item) => item.classList.add('tm_p'))
         box_card.querySelector("#tm_4").classList.remove("hidden")
         box_card.querySelector("#tm_2").classList.add("hidden")
     }
     selecionar("#preco").innerText = formatoReal(conf.preco[0])
 }
 
-const key = (e) =>{
+const key = (e) => {
     let key = e.target.parentNode.getAttribute('data-key')
-    
+
     qtdProdutos = 1
 
     modalkey = key
@@ -118,21 +118,23 @@ const key = (e) =>{
     return key
 }
 
-const preencherTamanhos=() =>{
-    
-    document.querySelectorAll('.tm_p').forEach((size)=>{
+const preencherTamanhos = () => {
+
+    document.querySelectorAll('.tm_p').forEach((size) => {
         size.classList.remove('selected');
         (size.id == 0) ? size.classList.add('selected') : ''
     });
 }
 
-const escolherTamanhoPreco=(chave)=>{
-    document.querySelectorAll('.tm_p').forEach((size)=>{
-        size.addEventListener('click',()=>{
+const escolherTamanhoPreco = (chave) => {
+    selecionar('option').setAttribute('disabled', true)
+    borda(chave)
+    document.querySelectorAll('.tm_p').forEach((size) => {
+        size.addEventListener('click', () => {
             selecionar('.tm_p.selected').classList.remove('selected')
             size.classList.add('selected')
 
-            selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[size.id])
+            borda(chave , size.id)
 
             // let teste = selecionar('#list_bordas')
             // console.log(teste.value == '');
@@ -140,9 +142,31 @@ const escolherTamanhoPreco=(chave)=>{
     })
 }
 
-const escolherBorda = () =>{
-    selecionarTodos('input[type="radio"]').forEach((item)=>{
-        item.addEventListener('click',(el)=>{
+const borda = (chave , preco=0) =>{
+    console.log('entrei');
+    let tm_Borda = 1
+    console.log(tm_Borda);
+    selecionar('#list_bordas').addEventListener('change',(item)=>{
+        tm_Borda = item.target.value
+
+        selecionar('#preco').innerHTML = formatoReal(precoNormal + arrayBordas[preco][0][tm_Borda])
+    })
+    console.log(itemProdutos[chave])
+
+    let precoNormal = selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[preco])
+
+    let preco_C_Borda = arrayBordas[preco][0][tm_Borda]
+
+    if (tm_Borda != undefined) {
+        selecionar('#preco').innerHTML = formatoReal(precoNormal + preco_C_Borda)
+    } else {
+        selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[preco])
+    }
+}
+
+const escolherBorda = () => {
+    selecionarTodos('input[type="radio"]').forEach((item) => {
+        item.addEventListener('click', (el) => {
             if (el.target.id == 'sim') {
                 selecionar('.select').classList.remove('hidden')
             } else {
@@ -152,48 +176,50 @@ const escolherBorda = () =>{
     })
 }
 
-const abriJanela = () =>{
+const abriJanela = () => {
     box_card.classList.remove("hidden")
 }
 
-const fechaJanela = () =>{
+const fechaJanela = () => {
     box_card.classList.add("hidden")
-    selecionarTodos('input[type="radio"]').forEach((item)=>{
+    selecionarTodos('input[type="radio"]').forEach((item) => {
         if (item.id == 'sim') {
             item.checked = false
-            selecionarTodos('option').forEach((item)=>{
+            selecionarTodos('option').forEach((item, index) => {
                 if (item.selected) {
                     item.selected = false
-                } else if (item.value == '') {
-                    item.selected = true
+
+                }
+                if (index == 0) {
+                    item.removeAttribute('disabled')
                 }
             })
         } else {
             item.checked = true
         }
     })
-    
+
     selecionar('.select').classList.add('hidden')
     modalkey = 0
 }
 
-const btnFechar=()=>{
-    document.querySelectorAll('#box_card button').forEach((item)=>item.addEventListener('click', fechaJanela))
+const btnFechar = () => {
+    document.querySelectorAll('#box_card button').forEach((item) => item.addEventListener('click', fechaJanela))
 }
 
-const remove_tamanho = (tm)=>{
-    tm.forEach((e)=>{
-        e.classList.remove('bg-red-600','text-white')
+const remove_tamanho = (tm) => {
+    tm.forEach((e) => {
+        e.classList.remove('bg-red-600', 'text-white')
     })
 }
 
-const mudarQuantidade = () =>{
-    selecionar('#mais_produtos').addEventListener('click',()=>{
+const mudarQuantidade = () => {
+    selecionar('#mais_produtos').addEventListener('click', () => {
         qtdProdutos++
         selecionar('.qtd-produto').innerHTML = qtdProdutos
     })
 
-    selecionar('#menos_produtos').addEventListener('click',()=>{
+    selecionar('#menos_produtos').addEventListener('click', () => {
         if (qtdProdutos > 1) {
             qtdProdutos--
             selecionar('.qtd-produto').innerHTML = qtdProdutos
@@ -201,17 +227,17 @@ const mudarQuantidade = () =>{
     })
 }
 
-const adicionarNoCarrinho = () =>{
-    selecionar('#carrinho').addEventListener('click',()=>{
+const adicionarNoCarrinho = () => {
+    selecionar('#carrinho').addEventListener('click', () => {
         console.log('adicionado no carrinho');
 
         let size = selecionar('.tm_p.selected').getAttribute('data-key')
 
-        let preco = selecionar('#preco').innerHTML.replace('R$&nbsp;','')
+        let preco = selecionar('#preco').innerHTML.replace('R$&nbsp;', '')
 
-        let identifica = itemProdutos[modalkey].id+'t'+size
+        let identifica = itemProdutos[modalkey].id + 't' + size
 
-        let chave = arrayCar.findIndex((item)=>item.identifica == identifica)
+        let chave = arrayCar.findIndex((item) => item.identifica == identifica)
 
         if (chave > -1) {
             arrayCar[chave].qt += qtdProdutos
@@ -235,8 +261,8 @@ const adicionarNoCarrinho = () =>{
     })
 }
 
-const atualizaCarrinho = () =>{
-    selecionar('.carrinho').dataset.content = (arrayCar.length < 10) ? `0${arrayCar.length}` : arrayCar.length 
+const atualizaCarrinho = () => {
+    selecionar('.carrinho').dataset.content = (arrayCar.length < 10) ? `0${arrayCar.length}` : arrayCar.length
 
     if (arrayCar.length > 0) {
 
@@ -246,7 +272,7 @@ const atualizaCarrinho = () =>{
         let total = 0
 
         for (let i in arrayCar) {
-            let produtoItem = itemProdutos.find((item) =>item.id == arrayCar[i].id)
+            let produtoItem = itemProdutos.find((item) => item.id == arrayCar[i].id)
 
             subTotal += arrayCar[i].preco * arrayCar[i].qt
 
@@ -254,7 +280,7 @@ const atualizaCarrinho = () =>{
             selecionar('#pdts_carrinho').append(cardItem)
 
             let itemSizeName = arrayCar[i].size
-            
+
             let itemName = `${produtoItem.titulo} (${itemSizeName})`
 
             cardItem.querySelector('img').src = produtoItem.img
@@ -267,16 +293,16 @@ const atualizaCarrinho = () =>{
             }
             cardItem.querySelector('.qt').innerHTML = arrayCar[i].qt
 
-            cardItem.querySelector('.qt_mais').addEventListener('click',()=>{
+            cardItem.querySelector('.qt_mais').addEventListener('click', () => {
                 arrayCar[i].qt++
                 atualizaCarrinho()
             })
 
-            cardItem.querySelector('.qt_menos').addEventListener('click',()=>{
+            cardItem.querySelector('.qt_menos').addEventListener('click', () => {
                 if (arrayCar[i].qt > 1) {
                     arrayCar[i].qt--
                 } else {
-                    arrayCar.splice(i,1)
+                    arrayCar.splice(i, 1)
                 }
 
                 atualizaCarrinho()
@@ -292,20 +318,20 @@ const atualizaCarrinho = () =>{
     }
 }
 
-const abrirCarrinho = () =>{
+const abrirCarrinho = () => {
     if (arrayCar.length > 0) {
         selecionar('#box_carrinho').classList.remove('left-full')
     }
 }
 
-const fechaCarrinho = ()=>{
-    selecionarTodos('.voltar_carrinho').forEach((item)=>{
+const fechaCarrinho = () => {
+    selecionarTodos('.voltar_carrinho').forEach((item) => {
         item.addEventListener('click', () => selecionar('#box_carrinho').classList.add('left-full'))
     })
 }
 
 mudarQuantidade()
-selecionar('.carrinho').addEventListener('click',()=>abrirCarrinho())
+selecionar('.carrinho').addEventListener('click', () => abrirCarrinho())
 adicionarNoCarrinho()
 atualizaCarrinho()
 fechaCarrinho()
