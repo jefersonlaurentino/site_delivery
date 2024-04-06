@@ -14,8 +14,6 @@ let arrayBordas = [
         0: [12, 5, 5, 12]
     }
 ]
-console.log(arrayBordas);
-console.log(arrayBordas[1][0][2]);
 let chaveIndex = 2
 let itemProdutos = []
 let qtdProdutos = 1
@@ -128,43 +126,65 @@ const preencherTamanhos = () => {
 
 const escolherTamanhoPreco = (chave) => {
     selecionar('option').setAttribute('disabled', true)
-    borda(chave)
+    // borda(chave)
+    let Borda = null//selecionar('#list_bordas').value
+    let tmP = 0
+    selecionar('#list_bordas').addEventListener('change', (item) => {
+        Borda = item.target.value
+        borda(chave, tmP, Borda)
+    })
     document.querySelectorAll('.tm_p').forEach((size) => {
         size.addEventListener('click', () => {
             selecionar('.tm_p.selected').classList.remove('selected')
             size.classList.add('selected')
-
-            borda(chave , size.id)
+            tmP = size.id
+            borda(chave, size.id, Borda)
 
             // let teste = selecionar('#list_bordas')
             // console.log(teste.value == '');
         })
     })
+    selecionarTodos('input[type="radio"]').forEach((item) => {
+        item.addEventListener('click', (el) => {
+            if (el.target.id == 'nao') {
+                naoBorda(chave, tmP)
+            }
+        })
+    })
+    borda(chave, tmP, Borda)
 }
 
-const borda = (chave , preco=0) =>{
-    console.log('entrei');
-    let tm_Borda = 1
-    console.log(tm_Borda);
-    selecionar('#list_bordas').addEventListener('change',(item)=>{
-        tm_Borda = item.target.value
+const naoBorda = (chave, size) => {
+    selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[size])
+}
 
-        selecionar('#preco').innerHTML = formatoReal(precoNormal + arrayBordas[preco][0][tm_Borda])
-    })
-    console.log(itemProdutos[chave])
-
-    let precoNormal = selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[preco])
-
-    let preco_C_Borda = arrayBordas[preco][0][tm_Borda]
-
-    if (tm_Borda != undefined) {
-        selecionar('#preco').innerHTML = formatoReal(precoNormal + preco_C_Borda)
+const borda = (chave, preco, borda) => {
+    if (borda != null) {
+        selecionar('#preco').innerHTML = formatoReal((itemProdutos[chave].preco[preco] + arrayBordas[preco][0][borda]))
     } else {
         selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[preco])
     }
+    // let tm_Borda = 1
+    // console.log(tm_Borda);
+    // selecionar('#list_bordas').addEventListener('change',(item)=>{
+    //     tm_Borda = item.target.value
+
+    //     selecionar('#preco').innerHTML = formatoReal(precoNormal + arrayBordas[preco][0][tm_Borda])
+    // })
+    // console.log(itemProdutos[chave])
+
+    // let precoNormal = selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[preco])
+
+    // let preco_C_Borda = arrayBordas[preco][0][tm_Borda]
+
+    // if (tm_Borda != undefined) {
+    //     selecionar('#preco').innerHTML = formatoReal(precoNormal + preco_C_Borda)
+    // } else {
+    //     selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[preco])
+    // }
 }
 
-const escolherBorda = () => {
+const escolherBorda = (chave) => {
     selecionarTodos('input[type="radio"]').forEach((item) => {
         item.addEventListener('click', (el) => {
             if (el.target.id == 'sim') {
