@@ -103,7 +103,6 @@ const preencheDadosmodal = (conf) => {
         box_card.querySelector("#tm_4").classList.remove("hidden")
         box_card.querySelector("#tm_2").classList.add("hidden")
     }
-    selecionar("#preco").innerText = formatoReal(conf.preco[0])
 }
 
 const key = (e) => {
@@ -132,6 +131,7 @@ const escolherTamanhoPreco = (chave) => {
     selecionar('#list_bordas').addEventListener('change', (item) => {
         Borda = item.target.value
         borda(chave, tmP, Borda)
+        console.log(item);
     })
     document.querySelectorAll('.tm_p').forEach((size) => {
         size.addEventListener('click', () => {
@@ -139,7 +139,7 @@ const escolherTamanhoPreco = (chave) => {
             size.classList.add('selected')
             tmP = size.id
             borda(chave, size.id, Borda)
-
+            
             // let teste = selecionar('#list_bordas')
             // console.log(teste.value == '');
         })
@@ -147,15 +147,13 @@ const escolherTamanhoPreco = (chave) => {
     selecionarTodos('input[type="radio"]').forEach((item) => {
         item.addEventListener('click', (el) => {
             if (el.target.id == 'nao') {
-                naoBorda(chave, tmP)
+                Borda = null
+                borda(chave, tmP, Borda)
+                removeSelection()
             }
         })
     })
     borda(chave, tmP, Borda)
-}
-
-const naoBorda = (chave, size) => {
-    selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[size])
 }
 
 const borda = (chave, preco, borda) => {
@@ -164,24 +162,6 @@ const borda = (chave, preco, borda) => {
     } else {
         selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[preco])
     }
-    // let tm_Borda = 1
-    // console.log(tm_Borda);
-    // selecionar('#list_bordas').addEventListener('change',(item)=>{
-    //     tm_Borda = item.target.value
-
-    //     selecionar('#preco').innerHTML = formatoReal(precoNormal + arrayBordas[preco][0][tm_Borda])
-    // })
-    // console.log(itemProdutos[chave])
-
-    // let precoNormal = selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[preco])
-
-    // let preco_C_Borda = arrayBordas[preco][0][tm_Borda]
-
-    // if (tm_Borda != undefined) {
-    //     selecionar('#preco').innerHTML = formatoReal(precoNormal + preco_C_Borda)
-    // } else {
-    //     selecionar('#preco').innerHTML = formatoReal(itemProdutos[chave].preco[preco])
-    // }
 }
 
 const escolherBorda = (chave) => {
@@ -196,6 +176,17 @@ const escolherBorda = (chave) => {
     })
 }
 
+const removeSelection = () => {
+    selecionarTodos('option').forEach((item, index) => {
+        if (item.selected) {
+            item.selected = false
+        }
+        if (index == 0) {
+            item.removeAttribute('disabled')
+        }
+    })
+}
+
 const abriJanela = () => {
     box_card.classList.remove("hidden")
 }
@@ -205,15 +196,7 @@ const fechaJanela = () => {
     selecionarTodos('input[type="radio"]').forEach((item) => {
         if (item.id == 'sim') {
             item.checked = false
-            selecionarTodos('option').forEach((item, index) => {
-                if (item.selected) {
-                    item.selected = false
-
-                }
-                if (index == 0) {
-                    item.removeAttribute('disabled')
-                }
-            })
+            removeSelection()
         } else {
             item.checked = true
         }
@@ -257,6 +240,14 @@ const adicionarNoCarrinho = () => {
 
         let identifica = itemProdutos[modalkey].id + 't' + size
 
+        let sizeBorda = selecionar('#list_bordas').value
+        if (sizeBorda != '') {
+            identifica+=`comB${sizeBorda}`
+        } else{
+            console.log('nao tem borda');
+        }
+
+        let arrayNomesBordas = ['Chocolate','Cheddar','Catupiry','Cream Cheese']
         let chave = arrayCar.findIndex((item) => item.identifica == identifica)
 
         if (chave > -1) {
@@ -268,6 +259,7 @@ const adicionarNoCarrinho = () => {
                 id: itemProdutos[modalkey].id,
                 size,
                 qt: qtdProdutos,
+                Borda: (sizeBorda)? arrayNomesBordas[sizeBorda] : '',
                 preco: parseFloat(preco)
             }
             arrayCar.push(item)
@@ -309,7 +301,7 @@ const atualizaCarrinho = () => {
             if (produtoItem.type == 'petiscos') {
                 cardItem.querySelector('.descricao').innerHTML = ''
             } else {
-                cardItem.querySelector('.descricao').innerHTML = `(${itemSizeName})`
+                cardItem.querySelector('.descricao').innerHTML = (arrayCar[i].Borda != '')? `(${itemSizeName}) Borda: ${arrayCar[i].Borda}` : `(${itemSizeName})`
             }
             cardItem.querySelector('.qt').innerHTML = arrayCar[i].qt
 
