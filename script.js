@@ -347,3 +347,12 @@ selecionar('.carrinho').addEventListener('click', () => abrirCarrinho())
 adicionarNoCarrinho()
 atualizaCarrinho()
 fechaCarrinho()
+
+
+// parte endereço
+selecionar('.finalizar_pedido').addEventListener('click',()=>{
+    selecionar('.campo__endereco').classList.remove('hidden')
+})
+selecionar('.enviar_wap').addEventListener('click',()=>{
+    selecionar('.campo__endereco').classList.add('hidden')
+})

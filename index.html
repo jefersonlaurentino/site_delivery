@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site delivery</title>
     <link rel="stylesheet" href="./styles/output.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
+
 <body class="bg-zinc-200">
 
     <!-- card produto -->
@@ -25,11 +28,13 @@
     <!-- fim do card -->
 
     <!-- box-card -->
-    <div id="box_card" class="h-screen w-full fixed bg-black/50 flex flex-col justify-center items-center z-10 overflow-x-hidden hidden">
+    <div id="box_card"
+        class="h-screen w-full fixed bg-black/50 flex flex-col justify-center items-center z-10 overflow-x-hidden hidden">
         <div class="box_conteiner bg-white w-11/12 max-w-4xl  rounded-lg p-3 shadow-xl shadow-black/60 ">
             <div class="flex mb-3">
                 <div class="w-2/5">
-                    <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg" alt="" id="img">
+                    <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg"
+                        alt="" id="img">
                 </div>
                 <div class="px-2 w-3/5">
                     <h3 class="titulo_info"></h3>
@@ -52,7 +57,7 @@
                     <label for="sim">Sim</label>
                     <div class="select hidden">
                         <select name="borda" id="list_bordas" class="border-gray-200 border-2 rounded-md">
-                            <option value="" selected >selecione a borda</option>
+                            <option value="" selected>selecione a borda</option>
                             <option value="0">chocolate</option>
                             <option value="1">cheddar</option>
                             <option value="2">catupiry</option>
@@ -64,7 +69,8 @@
             <div id="tm_2">
                 <h2>Escolha:</h2>
                 <div class="w-1/2 tm flex rounded-lg overflow-hidden font-bold bg-gray-200 cursor-pointer mt-2">
-                    <p id="0" data-key="sem leite" class="tm_p p-1 w-1/2 text-center border-r-2 border-black">sem leite</p>
+                    <p id="0" data-key="sem leite" class="tm_p p-1 w-1/2 text-center border-r-2 border-black">sem leite
+                    </p>
                     <p id="1" data-key="com leite" class="tm_p p-1 w-1/2 text-center">com leite</p>
                 </div>
             </div>
@@ -80,7 +86,8 @@
             </div>
             <div class="flex mt-3">
                 <button id="voltar" class="bg-gray-300 font-bold p-1  rounded-lg text-xl w-2/5 mr-2">Voltar</button>
-                <button id="carrinho" class="bg-green-500 text-white font-bold p-1 rounded-lg text-xl w-3/5">Adicionar ao Carrinho</button>
+                <button id="carrinho" class="bg-green-500 text-white font-bold p-1 rounded-lg text-xl w-3/5">Adicionar
+                    ao Carrinho</button>
             </div>
         </div>
     </div>
@@ -90,14 +97,16 @@
         <span class="menu m-1 material-symbols-outlined">
             menu
         </span>
-        <span data-content="0" class="carrinho relative material-symbols-outlined after:content-[attr(data-content)] after:absolute after:bg-red-600 after:text-white after:text-sm after:-right-3 after:-top-1 after:rounded-full after:w-5 after:h-5 after:flex after:justify-center after:items-center after:font-semibold after:font-mono">
+        <span data-content="0"
+            class="carrinho relative material-symbols-outlined after:content-[attr(data-content)] after:absolute after:bg-red-600 after:text-white after:text-sm after:-right-3 after:-top-1 after:rounded-full after:w-5 after:h-5 after:flex after:justify-center after:items-center after:font-semibold after:font-mono">
             shopping_bag
         </span>
     </header>
 
     <div class="bg-black text-white p-6 flex flex-col justify-center items-center pt-16">
         <div>
-            <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg" alt="logo da loja." class="rounded-full w-24 h-24">
+            <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg"
+                alt="logo da loja." class="rounded-full w-24 h-24">
         </div>
         <div class="text-center">
             <p>Rua Wanderley Agra de Azevedo.</p>
@@ -128,11 +137,11 @@
         <header class="voltar_carrinho flex items-center border-b border-black text-2xl font-bold p-2">
             <div class="absolute flex items-end">
                 <span class="material-symbols-outlined">
-                chevron_left
+                    chevron_left
                 </span>
                 <button>voltar</button>
             </div>
-            
+
             <h2 class="w-full text-center">carrinho</h2>
         </header>
         <div class="hidden">
@@ -144,17 +153,18 @@
                     <h3 class="titulo font-bold text-xl"></h3>
                     <p class="descricao"></p>
                 </div>
-                <div class="qtd_items_produto flex h-7 border border-black rounded-md items-center overflow-hidden bg-slate-300">
+                <div
+                    class="qtd_items_produto flex h-7 border border-black rounded-md items-center overflow-hidden bg-slate-300">
                     <p class="qt_menos p-2">-</p>
                     <p class="qt p-2 bg-white">1</p>
                     <p class="qt_mais p-2">+</p>
                 </div>
             </div>
         </div>
-        <main >
+        <main>
             <div id="pdts_carrinho">
-                
-                
+
+
             </div>
             <div class="obs m-2">
                 <h4 class="font-bold">Observações:</h4>
@@ -165,8 +175,9 @@
                 <span>R$ --</span>
             </div>
             <div class="flex">
-                <button class="voltar_carrinho w-1/2 m-2 p-1 rounded-md font-semibold text-xl bg-gray-300">Cancelar</button>
-                <button class="w-1/2 m-2 p-1 rounded-md font-semibold text-xl bg-green-600 text-white">Comprar</button>
+                <button
+                    class="voltar_carrinho w-1/2 m-2 p-1 rounded-md font-semibold text-xl bg-gray-300">Cancelar</button>
+                <button class="finalizar_pedido w-1/2 m-2 p-1 rounded-md font-semibold text-xl bg-green-600 text-white">Comprar</button>
             </div>
         </main>
     </aside>
@@ -187,7 +198,81 @@
         <div id="sucos" class="campo_card">
             <h2 class="titulo_cmp_card">Sucos</h2>
         </div>
+
+        <!-- campo de endereço -->
+        <div class="campo__endereco z-40 fixed top-0 bg-gray-500 w-full h-full font-semibold hidden">
+            <main class="px-3 flex flex-col gap-3">
+                <h3 class="text-center text-xl font-semibold m-2">Endereço de entrega</h3>
+                <div class="flex justify-center">
+                    <div class="mr-9">
+                        <input type="radio" name="zona" id="urbana">
+                        <label for="urbana">Zona Urbana</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="zona" id="rural">
+                        <label for="rural">Zona Rural</label>
+                    </div>
+                </div>
+
+                <div class="flex">
+                    <div>
+                        <label for="endereco" class="font-semibold">Endereço: *</label>
+                        <input type="text" id="endereco" class="bg-white border border-black">
+                    </div>
+                    <div>
+                        <label for="N_casa" class="font-semibold">N- casa</label>
+                        <input type="number" name="" id="N_casa">
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <label for="referencia">Ponto de referencia:</label>
+                    <input type="text" id="referencia">
+                </div>
+                <div class="flex flex-col">
+                    <label for="pagamento">Forma de pagamento: *</label>
+                    <select name="F_pagamento" id="pagamento" class="p-1 rounded-xl">
+                        <option value="">selecionar forma de pagamento</option>
+                        <option value="pix">Pix</option>
+                        <option value="cartão">Cartão</option>
+                        <option value="dinheiro">Dinheiro</option>
+                    </select>
+                </div>
+
+                <div class="flex gap-4">
+                    <h4>Precisa de troco? *</h4>
+                    <div>
+                        <input type="radio" name="troco" id="T_sim">
+                        <label for="T_sim">Sim</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="troco" id="T_nao">
+                        <label for="T_nao">Não</label>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>quanto de troco? *</h4>
+                    <input type="number" name="" id="T_valor" class="rounded-xl">
+                </div>
+            </main>
+            <footer class="flex flex-col gap-2 fixed bottom-0 w-full bg-white">
+                <div class="flex justify-between p-2 border-b border-black">
+                    <h4>Valor da entrega:</h4>
+                    <p>Grátis</p>
+                </div>
+                <div class="flex justify-between p-2 border-b border-black">
+                    <h4>Valor total a pagar:</h4>
+                    <p>R$ ---</p>
+                </div>
+                <div class="enviar_wap flex gap-2 mb-3">
+                    <button class="w-1/2 p-2 bg-gray-400 rounded-xl">Cancelar</button>
+                    <button class="enviar_wap w-1/2 p-2 rounded-xl bg-green-600 text-white">Finalizar Pedido</button>
+                </div>
+            </footer>
+        </div>
+
     </main>
     <script src="script.js"></script>
 </body>
+
 </html>
