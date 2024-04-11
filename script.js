@@ -429,10 +429,16 @@ const valorAPagar = (valor = 0) => {
 
 const enviarPedido = () => {
     let arrayEnviarPedido = []
+    let obs = selecionar('#obs').value
+    let total = selecionar('.valor__total p').innerHTML.replace('R$&nbsp;','')
+    let frete = selecionar('.valor__entrega p').innerHTML.replace('R$&nbsp;','')
+    let troco = selecionar('#T_sim').checked
+    let formatoPg = selecionar('#pagamento').value
+    let qtTroco = selecionar('#T_valor').value
 
     for (const i in arrayCar) {
         let arrayPedidos = {
-            titulo: itemProdutos[i].titulo,
+            titulo: itemProdutos[(parseInt(arrayCar[i].id)-1)].titulo,
             size: arrayCar[i].size,
             qt: arrayCar[i].qt,
             preco: arrayCar[i].preco,
@@ -453,12 +459,21 @@ const enviarPedido = () => {
         teste += msg
     }
 
+    teste += `-------------------------------------%0AObs:%20${obs}%0A-------------------------------------%0A`
+
+    if (troco == true) {
+        teste += `entrega: R$${frete}%0APagamento no: ${formatoPg}%0ATroco para: R$${qtTroco}%0Avalor total: R$${total}`
+    } else {
+        teste += `entrega: R$${frete}%0APagamento em: ${formatoPg}%0Avalor total: R$${total}`
+    }
+    
+
     let url = `https://api.whatsapp.com/send?phone=${fone}&text=${teste}`
-    console.log(teste);
+    console.log(arrayEnviarPedido);
     window.open(url)
 }
 
-//https://api.whatsapp.com/send?phone=5550988000000&text=
+//https://api.whatsapp.com/send?phone=5500000000000&text=%0AObs:%20teste%0A%0A-------------------------------------%0Afrete:%20gratis%0Atroco:%20R$%20200,00%0Avalor%20total:%20R$%20100,00%0A%0Avoltar%20troco:%20R$%20100,00
 
 formaPagamento()
 qtdTroco()
