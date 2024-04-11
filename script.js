@@ -351,21 +351,21 @@ fechaCarrinho()
 
 // parte endereço
 selecionar('.finalizar_pedido').addEventListener('click', () => {
-    removeHidden('.campo__endereco','hidden')
+    removeHidden('.campo__endereco', 'hidden')
     valorAPagar()
     zonaInput()
     selecionarTodos('#pagamento option')[0].setAttribute('disabled', true)
 })
 selecionar('.enviar_wap').addEventListener('click', (e) => {
-    // e.preventDefault()
-
     // selecionar('.campo__endereco').classList.add('hidden')
+    enviarPedido()
+    // e.preventDefault()
 })
 selecionar('.cancelar').addEventListener('click', (e) => {
     e.preventDefault()
     selecionarTodos('#pagamento option')[0].removeAttribute('disabled')
     removeSelection()
-    addHidden('.campo__endereco','hidden')
+    addHidden('.campo__endereco', 'hidden')
 })
 
 const zonaInput = () => {
@@ -386,32 +386,35 @@ const qtdTroco = () => {
     selecionarTodos('.troco input').forEach((item) => {
         item.addEventListener('click', (troco) => {
             if (troco.target.id == 'T_sim') {
-                removeHidden('.qtTroco','hidden')
+                removeHidden('.qtTroco', 'hidden')
+                selecionar('.qtTroco input').setAttribute('required', true)
             } else {
-                addHidden('.qtTroco','hidden')
+                addHidden('.qtTroco', 'hidden')
+                selecionar('.qtTroco input').removeAttribute('required')
             }
         })
     })
 }
 
-const removeHidden = (itemDom, element) =>{
+const removeHidden = (itemDom, element) => {
     selecionar(itemDom).classList.remove(element)
 }
 
-const addHidden = (itemDom, element) =>{
+const addHidden = (itemDom, element) => {
     selecionar(itemDom).classList.add(element)
 }
 
 const formaPagamento = () => {
     selecionar('#pagamento').addEventListener('change', (fornato) => {
         if (fornato.target.value == 'dinheiro') {
-            removeHidden('.troco','hidden')
-            selecionar('.troco input').setAttribute('required',true)
+            removeHidden('.troco', 'hidden')
+            selecionar('.troco input').setAttribute('required', true)
         } else {
-            addHidden('.troco','hidden')
-            selecionar('.troco input').checked = false
+            addHidden('.troco', 'hidden')
+            selecionarTodos('.troco input').forEach((el) => el.checked = false)
             selecionar('.troco input').removeAttribute('required')
-            addHidden('.qtTroco','hidden')
+            addHidden('.qtTroco', 'hidden')
+            selecionar('.qtTroco input').removeAttribute('required')
         }
     })
 }
@@ -423,6 +426,39 @@ const valorAPagar = (valor = 0) => {
         selecionar('.valor__total p').innerHTML = selecionar('#valor_carrinho span').innerHTML
     }
 }
+
+const enviarPedido = () => {
+    let arrayEnviarPedido = []
+
+    for (const i in arrayCar) {
+        let arrayPedidos = {
+            titulo: itemProdutos[i].titulo,
+            size: arrayCar[i].size,
+            qt: arrayCar[i].qt,
+            preco: arrayCar[i].preco,
+            borda: (arrayCar[i].Borda) ? arrayCar[i].Borda : undefined,
+        }
+        arrayEnviarPedido.push(arrayPedidos)
+    }
+    let fone = 5584987121574
+    let teste = ''//`01%20-%20calabresa%20com%20borda%20de%20catupiry%0A02%20-%20frango%20com%20catupiry`
+    for (let i = 0; i < arrayEnviarPedido.length; i++) {
+        let msg = ''
+        if (arrayEnviarPedido[i].borda == undefined) {
+            msg += `${arrayEnviarPedido[i].qt} - ${arrayEnviarPedido[i].titulo} (${arrayEnviarPedido[i].size})%0A`
+        } else {
+            msg +=  `${arrayEnviarPedido[i].qt} - ${arrayEnviarPedido[i].titulo} (${arrayEnviarPedido[i].size}) com borda de ${arrayEnviarPedido[i].borda}%0A`
+        }
+
+        teste += msg
+    }
+
+    let url = `https://api.whatsapp.com/send?phone=${fone}&text=${teste}`
+    console.log(teste);
+    window.open(url)
+}
+
+//https://api.whatsapp.com/send?phone=5550988000000&text=
 
 formaPagamento()
 qtdTroco()
