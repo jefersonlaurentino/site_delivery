@@ -139,7 +139,7 @@ const escolherTamanhoPreco = (chave) => {
             size.classList.add('selected')
             tmP = size.id
             borda(chave, size.id, Borda)
-            
+
             // let teste = selecionar('#list_bordas')
             // console.log(teste.value == '');
         })
@@ -193,7 +193,7 @@ const abriJanela = () => {
 
 const fechaJanela = () => {
     box_card.classList.add("hidden")
-    selecionarTodos('input[type="radio"]').forEach((item) => {
+    selecionarTodos('#tm_4 input[type="radio"]').forEach((item) => {
         if (item.id == 'sim') {
             item.checked = false
             removeSelection()
@@ -242,12 +242,12 @@ const adicionarNoCarrinho = () => {
 
         let sizeBorda = selecionar('#list_bordas').value
         if (sizeBorda != '') {
-            identifica+=`comB${sizeBorda}`
-        } else{
+            identifica += `comB${sizeBorda}`
+        } else {
             console.log('nao tem borda');
         }
 
-        let arrayNomesBordas = ['Chocolate','Cheddar','Catupiry','Cream Cheese']
+        let arrayNomesBordas = ['Chocolate', 'Cheddar', 'Catupiry', 'Cream Cheese']
         let chave = arrayCar.findIndex((item) => item.identifica == identifica)
 
         if (chave > -1) {
@@ -259,7 +259,7 @@ const adicionarNoCarrinho = () => {
                 id: itemProdutos[modalkey].id,
                 size,
                 qt: qtdProdutos,
-                Borda: (sizeBorda)? arrayNomesBordas[sizeBorda] : '',
+                Borda: (sizeBorda) ? arrayNomesBordas[sizeBorda] : '',
                 preco: parseFloat(preco)
             }
             arrayCar.push(item)
@@ -301,7 +301,7 @@ const atualizaCarrinho = () => {
             if (produtoItem.type == 'petiscos') {
                 cardItem.querySelector('.descricao').innerHTML = ''
             } else {
-                cardItem.querySelector('.descricao').innerHTML = (arrayCar[i].Borda != '')? `(${itemSizeName}) Borda: ${arrayCar[i].Borda}` : `(${itemSizeName})`
+                cardItem.querySelector('.descricao').innerHTML = (arrayCar[i].Borda != '') ? `(${itemSizeName}) Borda: ${arrayCar[i].Borda}` : `(${itemSizeName})`
             }
             cardItem.querySelector('.qt').innerHTML = arrayCar[i].qt
 
@@ -350,9 +350,79 @@ fechaCarrinho()
 
 
 // parte endereço
-selecionar('.finalizar_pedido').addEventListener('click',()=>{
-    selecionar('.campo__endereco').classList.remove('hidden')
+selecionar('.finalizar_pedido').addEventListener('click', () => {
+    removeHidden('.campo__endereco','hidden')
+    valorAPagar()
+    zonaInput()
+    selecionarTodos('#pagamento option')[0].setAttribute('disabled', true)
 })
-selecionar('.enviar_wap').addEventListener('click',()=>{
-    selecionar('.campo__endereco').classList.add('hidden')
+selecionar('.enviar_wap').addEventListener('click', (e) => {
+    // e.preventDefault()
+
+    // selecionar('.campo__endereco').classList.add('hidden')
 })
+selecionar('.cancelar').addEventListener('click', (e) => {
+    e.preventDefault()
+    selecionarTodos('#pagamento option')[0].removeAttribute('disabled')
+    removeSelection()
+    addHidden('.campo__endereco','hidden')
+})
+
+const zonaInput = () => {
+    selecionarTodos('.zona_input input[type="radio"]').forEach((item) => {
+        item.addEventListener('change', (e) => {
+            if (e.target.id == 'rural') {
+                selecionar('.valor__entrega p').innerHTML = formatoReal(5)
+                valorAPagar(5)
+            } else {
+                selecionar('.valor__entrega p').innerHTML = 'Grátis'
+                valorAPagar(0)
+            }
+        })
+    })
+}
+
+const qtdTroco = () => {
+    selecionarTodos('.troco input').forEach((item) => {
+        item.addEventListener('click', (troco) => {
+            if (troco.target.id == 'T_sim') {
+                removeHidden('.qtTroco','hidden')
+            } else {
+                addHidden('.qtTroco','hidden')
+            }
+        })
+    })
+}
+
+const removeHidden = (itemDom, element) =>{
+    selecionar(itemDom).classList.remove(element)
+}
+
+const addHidden = (itemDom, element) =>{
+    selecionar(itemDom).classList.add(element)
+}
+
+const formaPagamento = () => {
+    selecionar('#pagamento').addEventListener('change', (fornato) => {
+        if (fornato.target.value == 'dinheiro') {
+            removeHidden('.troco','hidden')
+            selecionar('.troco input').setAttribute('required',true)
+        } else {
+            addHidden('.troco','hidden')
+            selecionar('.troco input').checked = false
+            selecionar('.troco input').removeAttribute('required')
+            addHidden('.qtTroco','hidden')
+        }
+    })
+}
+
+const valorAPagar = (valor = 0) => {
+    if (valor != 0) {
+        selecionar('.valor__total p').innerHTML = formatoReal((parseInt(selecionar('#valor_carrinho span').innerHTML.replace('R$&nbsp;', '')) + valor))
+    } else {
+        selecionar('.valor__total p').innerHTML = selecionar('#valor_carrinho span').innerHTML
+    }
+}
+
+formaPagamento()
+qtdTroco()

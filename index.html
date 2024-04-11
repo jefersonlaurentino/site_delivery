@@ -177,7 +177,8 @@
             <div class="flex">
                 <button
                     class="voltar_carrinho w-1/2 m-2 p-1 rounded-md font-semibold text-xl bg-gray-300">Cancelar</button>
-                <button class="finalizar_pedido w-1/2 m-2 p-1 rounded-md font-semibold text-xl bg-green-600 text-white">Comprar</button>
+                <button
+                    class="finalizar_pedido w-1/2 m-2 p-1 rounded-md font-semibold text-xl bg-green-600 text-white">Comprar</button>
             </div>
         </main>
     </aside>
@@ -198,80 +199,79 @@
         <div id="sucos" class="campo_card">
             <h2 class="titulo_cmp_card">Sucos</h2>
         </div>
-
-        <!-- campo de endereço -->
-        <div class="campo__endereco z-40 fixed top-0 bg-gray-500 w-full h-full font-semibold hidden">
-            <main class="px-3 flex flex-col gap-3">
-                <h3 class="text-center text-xl font-semibold m-2">Endereço de entrega</h3>
-                <div class="flex justify-center">
-                    <div class="mr-9">
-                        <input type="radio" name="zona" id="urbana">
-                        <label for="urbana">Zona Urbana</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="zona" id="rural">
-                        <label for="rural">Zona Rural</label>
-                    </div>
-                </div>
-
-                <div class="flex">
-                    <div>
-                        <label for="endereco" class="font-semibold">Endereço: *</label>
-                        <input type="text" id="endereco" class="bg-white border border-black">
-                    </div>
-                    <div>
-                        <label for="N_casa" class="font-semibold">N- casa</label>
-                        <input type="number" name="" id="N_casa">
-                    </div>
-                </div>
-                <div class="flex flex-col">
-                    <label for="referencia">Ponto de referencia:</label>
-                    <input type="text" id="referencia">
-                </div>
-                <div class="flex flex-col">
-                    <label for="pagamento">Forma de pagamento: *</label>
-                    <select name="F_pagamento" id="pagamento" class="p-1 rounded-xl">
-                        <option value="">selecionar forma de pagamento</option>
-                        <option value="pix">Pix</option>
-                        <option value="cartão">Cartão</option>
-                        <option value="dinheiro">Dinheiro</option>
-                    </select>
-                </div>
-
-                <div class="flex gap-4">
-                    <h4>Precisa de troco? *</h4>
-                    <div>
-                        <input type="radio" name="troco" id="T_sim">
-                        <label for="T_sim">Sim</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="troco" id="T_nao">
-                        <label for="T_nao">Não</label>
-                    </div>
-                </div>
-
-                <div>
-                    <h4>quanto de troco? *</h4>
-                    <input type="number" name="" id="T_valor" class="rounded-xl">
-                </div>
-            </main>
-            <footer class="flex flex-col gap-2 fixed bottom-0 w-full bg-white">
-                <div class="flex justify-between p-2 border-b border-black">
-                    <h4>Valor da entrega:</h4>
-                    <p>Grátis</p>
-                </div>
-                <div class="flex justify-between p-2 border-b border-black">
-                    <h4>Valor total a pagar:</h4>
-                    <p>R$ ---</p>
-                </div>
-                <div class="enviar_wap flex gap-2 mb-3">
-                    <button class="w-1/2 p-2 bg-gray-400 rounded-xl">Cancelar</button>
-                    <button class="enviar_wap w-1/2 p-2 rounded-xl bg-green-600 text-white">Finalizar Pedido</button>
-                </div>
-            </footer>
-        </div>
-
     </main>
+
+    <!-- campo de endereço -->  
+    <form class="campo__endereco z-40 fixed top-0 bg-gray-500 w-full h-full font-semibold hidden">
+        <main class="px-3 flex flex-col gap-3">
+            <h3 class="text-center text-xl font-semibold m-2">Endereço de entrega</h3>
+            <div class="zona_input flex justify-center">
+                <div class="mr-9">
+                    <input type="radio" name="zona" id="urbana" required>
+                    <label for="urbana">Zona Urbana</label>
+                </div>
+                <div>
+                    <input type="radio" name="zona" id="rural">
+                    <label for="rural">Zona Rural</label>
+                </div>
+            </div>
+
+            <div class="flex">
+                <div>
+                    <label for="endereco" class="font-semibold">Endereço: *</label>
+                    <input type="text" id="endereco" class="bg-white border border-black" required>
+                </div>
+                <div>
+                    <label for="N_casa" class="font-semibold">N- casa</label>
+                    <input type="number" name="" id="N_casa" required>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <label for="referencia">Ponto de referencia:</label>
+                <input type="text" id="referencia">
+            </div>
+            <div class="flex flex-col">
+                <label for="pagamento">Forma de pagamento: *</label>
+                <select name="F_pagamento" id="pagamento" class="p-1 rounded-xl" required>
+                    <option value="">selecionar forma de pagamento</option>
+                    <option value="pix">Pix</option>
+                    <option value="cartão">Cartão</option>
+                    <option value="dinheiro">Dinheiro</option>
+                </select>
+            </div>
+
+            <div class="troco flex gap-4 hidden">
+                <h4>Precisa de troco? *</h4>
+                <div>
+                    <input type="radio" name="troco" id="T_sim">
+                    <label for="T_sim">Sim</label>
+                </div>
+                <div>
+                    <input type="radio" name="troco" id="T_nao">
+                    <label for="T_nao">Não</label>
+                </div>
+            </div>
+
+            <div class="qtTroco hidden">
+                <h4>quanto de troco? *</h4>
+                <input type="number" name="" id="T_valor" class="rounded-xl">
+            </div>
+        </main>
+        <footer class="flex flex-col gap-2 fixed bottom-0 w-full bg-white">
+            <div class="valor__entrega flex justify-between p-2 border-b border-black">
+                <h4>Valor da entrega:</h4>
+                <p>R$ --</p>
+            </div>
+            <div class="valor__total flex justify-between p-2 border-b border-black">
+                <h4>Valor total a pagar:</h4>
+                <p>R$ ---</p>
+            </div>
+            <div class="enviar_wap flex gap-2 mb-3">
+                <button class="cancelar w-1/2 p-2 bg-gray-400 rounded-xl">Cancelar</button>
+                <button class="enviar_wap w-1/2 p-2 rounded-xl bg-green-600 text-white">Finalizar Pedido</button>
+            </div>
+        </footer>
+    </aside>
     <script src="script.js"></script>
 </body>
 
