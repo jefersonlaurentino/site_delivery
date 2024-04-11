@@ -356,11 +356,25 @@ selecionar('.finalizar_pedido').addEventListener('click', () => {
     zonaInput()
     selecionarTodos('#pagamento option')[0].setAttribute('disabled', true)
 })
+
+const validityInput = (input) =>{
+    return selecionar(input).validity.valid
+}
+
 selecionar('.enviar_wap').addEventListener('click', (e) => {
-    // selecionar('.campo__endereco').classList.add('hidden')
-    enviarPedido()
-    // e.preventDefault()
+    let end = validityInput('#endereco')
+    let zona = validityInput('.zona_input input')
+    let NuCasa = validityInput('#N_casa')
+    let typePagamento = validityInput('#pagamento')
+    let troco = validityInput('.troco input')
+    let voltaTroco = validityInput('#T_valor')
+
+    if (end && zona && NuCasa && typePagamento && troco && voltaTroco) {
+        enviarPedido()
+    }
+
 })
+
 selecionar('.cancelar').addEventListener('click', (e) => {
     e.preventDefault()
     selecionarTodos('#pagamento option')[0].removeAttribute('disabled')
@@ -430,6 +444,12 @@ const valorAPagar = (valor = 0) => {
 const enviarPedido = () => {
     let arrayEnviarPedido = []
     let obs = selecionar('#obs').value
+
+    let end = selecionar('#endereco').value
+    // let zona = selecionarTodos('.zona_input input')
+    // console.log(zona);
+    let NuCasa = selecionar('#N_casa').value
+
     let total = selecionar('.valor__total p').innerHTML.replace('R$&nbsp;','')
     let frete = selecionar('.valor__entrega p').innerHTML.replace('R$&nbsp;','')
     let troco = selecionar('#T_sim').checked
@@ -460,11 +480,13 @@ const enviarPedido = () => {
     }
 
     teste += `-------------------------------------%0AObs:%20${obs}%0A-------------------------------------%0A`
-
+    if (frete != 'Grátis') {
+        frete = 'R$ ' + frete
+    }
     if (troco == true) {
-        teste += `entrega: R$${frete}%0APagamento no: ${formatoPg}%0ATroco para: R$${qtTroco}%0Avalor total: R$${total}`
+        teste += `Endereço: ${end}-${NuCasa}/%0Aentrega: ${frete}%0APagamento no: ${formatoPg}%0ATroco para: R$${qtTroco}%0Avalor total: R$${total}`
     } else {
-        teste += `entrega: R$${frete}%0APagamento em: ${formatoPg}%0Avalor total: R$${total}`
+        teste += `Endereço: ${end}-${NuCasa}/%0Aentrega: ${frete}%0APagamento no: ${formatoPg}%0Avalor total: R$${total}`
     }
     
 
