@@ -357,7 +357,7 @@ selecionar('.finalizar_pedido').addEventListener('click', () => {
     selecionarTodos('#pagamento option')[0].setAttribute('disabled', true)
 })
 
-const validityInput = (input) =>{
+const validityInput = (input) => {
     return selecionar(input).validity.valid
 }
 
@@ -372,7 +372,6 @@ selecionar('.enviar_wap').addEventListener('click', (e) => {
     if (end && zona && NuCasa && typePagamento && troco && voltaTroco) {
         enviarPedido()
     }
-
 })
 
 selecionar('.cancelar').addEventListener('click', (e) => {
@@ -446,19 +445,23 @@ const enviarPedido = () => {
     let obs = selecionar('#obs').value
 
     let end = selecionar('#endereco').value
-    // let zona = selecionarTodos('.zona_input input')
-    // console.log(zona);
+    let zona;
+    selecionarTodos('.zona_input input').forEach((item) => {
+        if (item.checked) {
+            zona = item.id
+        }
+    })
     let NuCasa = selecionar('#N_casa').value
 
-    let total = selecionar('.valor__total p').innerHTML.replace('R$&nbsp;','')
-    let frete = selecionar('.valor__entrega p').innerHTML.replace('R$&nbsp;','')
+    let total = selecionar('.valor__total p').innerHTML.replace('R$&nbsp;', '')
+    let frete = selecionar('.valor__entrega p').innerHTML.replace('R$&nbsp;', '')
     let troco = selecionar('#T_sim').checked
     let formatoPg = selecionar('#pagamento').value
     let qtTroco = selecionar('#T_valor').value
 
     for (const i in arrayCar) {
         let arrayPedidos = {
-            titulo: itemProdutos[(parseInt(arrayCar[i].id)-1)].titulo,
+            titulo: itemProdutos[(parseInt(arrayCar[i].id) - 1)].titulo,
             size: arrayCar[i].size,
             qt: arrayCar[i].qt,
             preco: arrayCar[i].preco,
@@ -473,7 +476,7 @@ const enviarPedido = () => {
         if (arrayEnviarPedido[i].borda == undefined) {
             msg += `${arrayEnviarPedido[i].qt} - ${arrayEnviarPedido[i].titulo} (${arrayEnviarPedido[i].size})%0A`
         } else {
-            msg +=  `${arrayEnviarPedido[i].qt} - ${arrayEnviarPedido[i].titulo} (${arrayEnviarPedido[i].size}) com borda de ${arrayEnviarPedido[i].borda}%0A`
+            msg += `${arrayEnviarPedido[i].qt} - ${arrayEnviarPedido[i].titulo} (${arrayEnviarPedido[i].size}) com borda de ${arrayEnviarPedido[i].borda}%0A`
         }
 
         teste += msg
@@ -484,18 +487,26 @@ const enviarPedido = () => {
         frete = 'R$ ' + frete
     }
     if (troco == true) {
-        teste += `Endereço: ${end}-${NuCasa}/%0Aentrega: ${frete}%0APagamento no: ${formatoPg}%0ATroco para: R$${qtTroco}%0Avalor total: R$${total}`
+        teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0Aentrega: ${frete}.%0APagamento no: ${formatoPg}.%0ATroco para: R$${qtTroco}.%0Avalor total: R$${total}.`
     } else {
-        teste += `Endereço: ${end}-${NuCasa}/%0Aentrega: ${frete}%0APagamento no: ${formatoPg}%0Avalor total: R$${total}`
+        teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0Aentrega: ${frete}.%0APagamento no: ${formatoPg}.%0Avalor total: R$${total}.`
     }
-    
+
 
     let url = `https://api.whatsapp.com/send?phone=${fone}&text=${teste}`
     console.log(arrayEnviarPedido);
     window.open(url)
 }
 
-//https://api.whatsapp.com/send?phone=5500000000000&text=%0AObs:%20teste%0A%0A-------------------------------------%0Afrete:%20gratis%0Atroco:%20R$%20200,00%0Avalor%20total:%20R$%20100,00%0A%0Avoltar%20troco:%20R$%20100,00
+selecionar('#T_valor').addEventListener('input', (el) => {
+    console.log('ok');
+    el.target.value = el.target.value.replace(/[^0-9\,\.]/g, '')
+})
+
+selecionar('#T_valor').addEventListener('change', (el) => {
+    let value = parseFloat(el.target.value).toFixed(2)
+    el.target.value = value.replace(/[.]/g, ',')
+})
 
 formaPagamento()
 qtdTroco()
