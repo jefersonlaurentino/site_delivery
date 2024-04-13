@@ -362,6 +362,7 @@ const validityInput = (input) => {
 }
 
 selecionar('.enviar_wap').addEventListener('click', (e) => {
+    let name = validityInput('#input_name')
     let end = validityInput('#endereco')
     let zona = validityInput('.zona_input input')
     let NuCasa = validityInput('#N_casa')
@@ -369,8 +370,16 @@ selecionar('.enviar_wap').addEventListener('click', (e) => {
     let troco = validityInput('.troco input')
     let voltaTroco = validityInput('#T_valor')
 
-    if (end && zona && NuCasa && typePagamento && troco && voltaTroco) {
-        enviarPedido()
+    let valueTotal = parseFloat((selecionar('.valor__total p').innerHTML).replace('R$&nbsp;',''))
+    let valueTroco = parseFloat(selecionar('#T_valor').value)
+
+    if (name && end && zona && NuCasa && typePagamento && troco && voltaTroco) {
+        if (valueTroco > valueTotal) {
+            enviarPedido()
+        } else {
+            alert('valor para troco deve ser maior')
+            e.preventDefault()
+        }
     }
 })
 
@@ -452,7 +461,7 @@ const enviarPedido = () => {
         }
     })
     let NuCasa = selecionar('#N_casa').value
-
+    let pontoReferencia = selecionar('#referencia').value
     let total = selecionar('.valor__total p').innerHTML.replace('R$&nbsp;', '')
     let frete = selecionar('.valor__entrega p').innerHTML.replace('R$&nbsp;', '')
     let troco = selecionar('#T_sim').checked
@@ -470,7 +479,8 @@ const enviarPedido = () => {
         arrayEnviarPedido.push(arrayPedidos)
     }
     let fone = 5584987121574
-    let teste = ''//`01%20-%20calabresa%20com%20borda%20de%20catupiry%0A02%20-%20frango%20com%20catupiry`
+    let teste = '-------PEDIDO-------%0A%0A'
+
     for (let i = 0; i < arrayEnviarPedido.length; i++) {
         let msg = ''
         if (arrayEnviarPedido[i].borda == undefined) {
@@ -482,24 +492,34 @@ const enviarPedido = () => {
         teste += msg
     }
 
-    teste += `-------------------------------------%0AObs:%20${obs}%0A-------------------------------------%0A`
+    teste += `------OBSERVAÇÃO------%0A%0AObs:%20${obs}%0A%0A-----DADOS DO CLIENTE-----%0A%0A`
     if (frete != 'Grátis') {
         frete = 'R$ ' + frete
     }
-    if (troco == true) {
-        teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0Aentrega: ${frete}.%0APagamento no: ${formatoPg}.%0ATroco para: R$${qtTroco}.%0Avalor total: R$${total}.`
+
+    let value_troco = parseFloat(qtTroco) - parseFloat(total)
+
+    if (troco) {
+        if (pontoReferencia) {
+            teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0APonto de referencia: ${pontoReferencia}.%0AEntrega: ${frete}.%0APagamento no: ${formatoPg}.%0ATroco para: R$${qtTroco}.%0Avalor total: R$${total}.%0A*valor do troco: R$ ${value_troco},00*`
+        } else {
+            teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0Aentrega: ${frete}.%0APagamento no: ${formatoPg}.%0ATroco para: R$${qtTroco}.%0Avalor total: R$${total}.%0A*valor do troco: R$ ${value_troco},00*`
+        }
+        
     } else {
-        teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0Aentrega: ${frete}.%0APagamento no: ${formatoPg}.%0Avalor total: R$${total}.`
+        if (pontoReferencia) {
+            teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0Aentrega: ${frete}.%0APagamento no: ${formatoPg}.%0Avalor total: R$${total}.`
+        } else {
+            teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0APonto de referencia: ${pontoReferencia}.%0Aentrega: ${frete}.%0APagamento no: ${formatoPg}.%0Avalor total: R$${total}.`
+        }
     }
 
 
     let url = `https://api.whatsapp.com/send?phone=${fone}&text=${teste}`
-    console.log(arrayEnviarPedido);
     window.open(url)
 }
 
 selecionar('#T_valor').addEventListener('input', (el) => {
-    console.log('ok');
     el.target.value = el.target.value.replace(/[^0-9\,\.]/g, '')
 })
 
