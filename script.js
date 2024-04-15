@@ -20,6 +20,7 @@ let qtdProdutos = 1
 const selecionar = (item) => document.querySelector(item);
 const selecionarTodos = (item) => document.querySelectorAll(item);
 
+const saboresPizzas = selecionarTodos('.sabores__pizzas')
 const pizzas = selecionar("#pizzas")
 const pizzas_especiais = selecionar("#pizzas_especiais")
 const pizzas_doces = selecionar("#pizzas_doces")
@@ -56,6 +57,28 @@ fetch(apiProdutos)
             btnFechar()
         });
     })
+
+const montarSaboresPizza = () =>{
+    let pzNormal = []
+    let pzEspeciais = []
+    let pzDoces = []
+    itemProdutos.forEach((sabores) =>{
+        if(sabores.type == 'pizza') {
+            pzNormal.push(sabores.titulo)
+        } else if (sabores.type == 'pizzas_especiais') {
+            pzEspeciais.push(sabores.titulo)
+        } else if (sabores.type == 'pizzas_doces') {
+            pzDoces.push(sabores.titulo)
+        }
+    })
+    return {pzNormal,pzEspeciais,pzDoces}
+}
+
+const mostraSabores = (normais,especiais, doces) =>{
+    console.table(normais);
+    console.table(especiais);
+    console.table(doces);
+}
 
 const preencheDadosProdutos = (produto, conf, index) => {
     produto.classList.remove("hidden")
@@ -530,3 +553,7 @@ selecionar('#T_valor').addEventListener('change', (el) => {
 
 formaPagamento()
 qtdTroco()
+const btn = selecionar('.montePizza')
+btn.addEventListener('click',(e)=>{
+    console.log(montarSaboresPizza())
+})

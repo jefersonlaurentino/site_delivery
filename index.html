@@ -23,9 +23,46 @@
                 <span class="preco_info span_preco">tamanho(P)</span>
             </div>
         </div>
-        <div class="click absolute h-full w-full"></div>
+        <button class="click absolute h-full w-full"></button>
     </div>
     <!-- fim do card -->
+
+    <!-- escolhe a pizza 2 sabores-->
+<div class="fixed top-0 w-full h-screen flex justify-center items-center bg-blue-300 z-20 hidden">
+    <div class="flex justify-center items-center w-11/12 bg-white rounded-lg shadow-md shadow-black/50">
+        <div class="img">
+            <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg" alt="">
+        </div>
+        <div class="p-3 text-center">
+            <h3 class="titulo_info">pizza 2 sabores</h3>
+            <form class="flex flex-col gap-2">
+                <div class="flex flex-col items-center">
+                    <label for="pri_sabor">escolha o primeiro sabor</label>
+                    <select name="P_sabor" id="pri_sabor" class="sabores__pizzas bg-gray-400 rounded-md" required>
+                        <option value="">selecione o primeiro sabor</option>
+                    </select>
+                </div>
+                <div class="flex flex-col items-center">
+                    <label for="se_sabor">escolha o Segundo sabor</label>
+                    <select name="S_sabor" id="se_sabor" class="sabores__pizzas bg-gray-400 rounded-md" required>
+                        <option value="">selecione o segundo sabor</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="escolhe_borda">Borda:</label>
+                    <select name="" id="escolhe_borda" class="bg-gray-400 rounded-md">
+                        <option value="">escolha a borda</option>
+                    </select>
+                </div>
+                <div>
+                    <button>Cancelar</button>
+                    <button>Adicionar no Carrinho</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
     <!-- box-card -->
     <div id="box_card"
@@ -69,7 +106,8 @@
             <div id="tm_2">
                 <h2>Escolha:</h2>
                 <div class="w-1/2 tm flex rounded-lg overflow-hidden font-bold bg-gray-200 cursor-pointer mt-2">
-                    <p id="0" data-key="sem leite" class="tm_p p-1 w-1/2 text-center border-r-2 border-black">sem leite
+                    <p id="0" data-key="sem leite" class="tm_p p-1 w-1/2 text-center border-r-2 border-black">sem
+                        leite
                     </p>
                     <p id="1" data-key="com leite" class="tm_p p-1 w-1/2 text-center">com leite</p>
                 </div>
@@ -184,6 +222,33 @@
     </aside>
     <!-- fim do aside carinho -->
     <main class="max-w-5xl m-auto">
+        <div>
+            <h2 class="titulo_cmp_card">Monte sua Pizza</h2>
+
+            <div class="card relative">
+                <div class="img">
+                    <img src="" alt="">
+                </div>
+                <div class="info">
+                    <h3 class="titulo_info">Pizza com 2 sabores</h3>
+                    <p>Monte sua pizza com os melhores sabores!</p>
+                </div>
+                <button class="montePizza absolute h-full w-full"></button>
+            </div>
+
+            <div class="card relative">
+                <div class="img">
+                    <img src="" alt="">
+                </div>
+                <div class="info">
+                    <h3 class="titulo_info">Pizza com 4 sabores</h3>
+                    <p>Monte sua pizza com os melhores sabores!</p>
+                </div>
+                <button class="montePizza absolute h-full w-full"></button>
+            </div>
+
+        </div>
+
         <div id="pizzas" class="campo_card">
             <h2 class="titulo_cmp_card">Pizzas Clássicas</h2>
         </div>
@@ -201,7 +266,7 @@
         </div>
     </main>
 
-    <!-- campo de endereço -->  
+    <!-- campo de endereço -->
     <form class="campo__endereco z-40 fixed top-0 bg-gray-500 w-full h-full font-semibold hidden">
         <main class="px-3 flex flex-col gap-3">
             <h3 class="text-center text-xl font-semibold m-2">Endereço de entrega</h3>
@@ -259,8 +324,9 @@
             <div class="qtTroco hidden">
                 <h4>quanto de troco? *</h4>
                 <div class="flex ">
-                    <h4 class="px-2 bg-white rounded-xl ">R$<input type="text" name="" id="T_valor" class=" w-14 rounded-xl outline-none focus:border-none pl-1"></h4>
-                    
+                    <h4 class="px-2 bg-white rounded-xl ">R$<input type="text" name="" id="T_valor"
+                            class=" w-14 rounded-xl outline-none focus:border-none pl-1"></h4>
+
                 </div>
             </div>
         </main>
@@ -278,8 +344,8 @@
                 <button class="enviar_wap w-1/2 p-2 rounded-xl bg-green-600 text-white">Finalizar Pedido</button>
             </div>
         </footer>
-    </aside>
-    <script src="script.js"></script>
+        </aside>
+        <script src="script.js"></script>
 </body>
 
 </html>
