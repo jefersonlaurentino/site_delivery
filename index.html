@@ -28,7 +28,7 @@
     <!-- fim do card -->
 
     <!-- escolhe a pizza 2 sabores-->
-<div class="fixed top-0 w-full h-screen flex justify-center items-center bg-blue-300 z-20 hidden">
+<div class="monte_pizza fixed top-0 w-full h-screen flex justify-center items-center bg-blue-300 z-20 hidden">
     <div class="flex justify-center items-center w-11/12 bg-white rounded-lg shadow-md shadow-black/50">
         <div class="img">
             <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg" alt="">
@@ -40,12 +40,23 @@
                     <label for="pri_sabor">escolha o primeiro sabor</label>
                     <select name="P_sabor" id="pri_sabor" class="sabores__pizzas bg-gray-400 rounded-md" required>
                         <option value="">selecione o primeiro sabor</option>
+                        <optgroup label="Clássicas" class="pz__classic"></optgroup>
+
+                        <optgroup label="Especiais" class="pz__especiais"></optgroup>
+
+                        <optgroup label="Doces" class="pz__doces"></optgroup>
+
                     </select>
                 </div>
                 <div class="flex flex-col items-center">
                     <label for="se_sabor">escolha o Segundo sabor</label>
-                    <select name="S_sabor" id="se_sabor" class="sabores__pizzas bg-gray-400 rounded-md" required>
+                    <select name="S_sabor" id="se_sabor" class="bg-gray-400 rounded-md" required>
                         <option value="">selecione o segundo sabor</option>
+                        <optgroup label="Clássicas" class="pz__classic"></optgroup>
+
+                        <optgroup label="Especiais" class="pz__especiais"></optgroup>
+
+                        <optgroup label="Doces" class="pz__doces"></optgroup>
                     </select>
                 </div>
                 <div>

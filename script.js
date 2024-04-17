@@ -27,6 +27,9 @@ const pizzas_doces = selecionar("#pizzas_doces")
 const petiscos = selecionar("#petiscos")
 const sucos = selecionar("#sucos")
 const box_card = selecionar("#box_card")
+const montePizzaClassic = selecionarTodos('.pz__classic')
+const montePizzaEspeciais = selecionar('.pz__especiais')
+const montePizzaDoces = selecionar('.pz__doces')
 
 const apiProdutos = "lista_produtos.json"
 fetch(apiProdutos)
@@ -58,26 +61,22 @@ fetch(apiProdutos)
         });
     })
 
-const montarSaboresPizza = () =>{
-    let pzNormal = []
-    let pzEspeciais = []
-    let pzDoces = []
-    itemProdutos.forEach((sabores) =>{
-        if(sabores.type == 'pizza') {
-            pzNormal.push(sabores.titulo)
-        } else if (sabores.type == 'pizzas_especiais') {
-            pzEspeciais.push(sabores.titulo)
-        } else if (sabores.type == 'pizzas_doces') {
-            pzDoces.push(sabores.titulo)
-        }
+    const btn = selecionar('.montePizza')
+    btn.addEventListener('click',(e)=>{
+        selecionar('.monte_pizza').classList.remove('hidden')
     })
-    return {pzNormal,pzEspeciais,pzDoces}
-}
 
-const mostraSabores = (normais,especiais, doces) =>{
-    console.table(normais);
-    console.table(especiais);
-    console.table(doces);
+const montarSaboresPizza = (conf , index) =>{
+    let element = document.createElement('option')
+    element.setAttribute('value', index)
+    element.innerHTML = conf.titulo
+    if (conf.type == 'pizza') {
+        montePizzaClassic[0].appendChild(element)
+    } else if (conf.type == 'pizzas_especiais'){
+        montePizzaEspeciais.appendChild(element)
+    } else {
+        montePizzaDoces.appendChild(element)
+    }
 }
 
 const preencheDadosProdutos = (produto, conf, index) => {
@@ -90,10 +89,13 @@ const preencheDadosProdutos = (produto, conf, index) => {
     produto.querySelector(".preco_info").innerText = formatoReal(conf.preco[0])
     if (conf.type == "pizza") {
         pizzas.appendChild(produto)
+        montarSaboresPizza(conf , index)
     } else if (conf.type == "pizzas_especiais") {
         pizzas_especiais.appendChild(produto)
+        montarSaboresPizza(conf , index)
     } else if (conf.type == "pizzas_doces") {
         pizzas_doces.appendChild(produto)
+        montarSaboresPizza(conf , index)
     } else if (conf.type == "sucos") {
         sucos.appendChild(produto)
         sucos.querySelector('.span_preco').remove()
@@ -553,7 +555,3 @@ selecionar('#T_valor').addEventListener('change', (el) => {
 
 formaPagamento()
 qtdTroco()
-const btn = selecionar('.montePizza')
-btn.addEventListener('click',(e)=>{
-    console.log(montarSaboresPizza())
-})
