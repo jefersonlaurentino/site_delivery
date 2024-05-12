@@ -64,6 +64,7 @@ fetch(apiProdutos)
     const btn = selecionar('.montePizza')
     btn.addEventListener('click',(e)=>{
         selecionar('.monte_pizza').classList.remove('hidden')
+        escolhe_borda()
     })
 
 const montarSaboresPizza = (conf , index) =>{
@@ -71,11 +72,42 @@ const montarSaboresPizza = (conf , index) =>{
     element.setAttribute('value', index)
     element.innerHTML = conf.titulo
     if (conf.type == 'pizza') {
-        montePizzaClassic[0].appendChild(element)
+        addPZClassic('#P__classic',element)
     } else if (conf.type == 'pizzas_especiais'){
         montePizzaEspeciais.appendChild(element)
     } else {
         montePizzaDoces.appendChild(element)
+    }
+} 
+
+const addPZClassic = (id,element) =>{
+    selecionar(id).append(element)
+}
+
+const montarSaboresPizza2 = (conf , index) =>{
+    let element = document.createElement('option')
+    element.setAttribute('value', index)
+    element.innerHTML = conf.titulo
+    if (conf.type == 'pizza') {
+        addPZClassic2('#P2__classic',element)
+    } else if (conf.type == 'pizzas_especiais'){
+        montePizzaEspeciais.appendChild(element)
+    } else {
+        montePizzaDoces.appendChild(element)
+    }
+} 
+
+const addPZClassic2 = (id,element) =>{
+    selecionar(id).append(element)
+}
+
+const escolhe_borda = () =>{
+    let nome = ["chocolate","cheddar", "catupiry" , "cream cheese"]
+    for (let index = 0; index < arrayBordas.length ; index++) {
+        let bordas = document.createElement('option')
+        bordas.value = index
+        bordas.innerHTML = nome[index]
+        selecionar('#escolhe_borda').appendChild(bordas)
     }
 }
 
@@ -90,6 +122,7 @@ const preencheDadosProdutos = (produto, conf, index) => {
     if (conf.type == "pizza") {
         pizzas.appendChild(produto)
         montarSaboresPizza(conf , index)
+        montarSaboresPizza2(conf , index)
     } else if (conf.type == "pizzas_especiais") {
         pizzas_especiais.appendChild(produto)
         montarSaboresPizza(conf , index)
