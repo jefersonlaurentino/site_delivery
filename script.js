@@ -20,16 +20,10 @@ let qtdProdutos = 1
 const selecionar = (item) => document.querySelector(item);
 const selecionarTodos = (item) => document.querySelectorAll(item);
 
-const saboresPizzas = selecionarTodos('.sabores__pizzas')
 const pizzas = selecionar("#pizzas")
-const pizzas_especiais = selecionar("#pizzas_especiais")
 const pizzas_doces = selecionar("#pizzas_doces")
-const petiscos = selecionar("#petiscos")
 const sucos = selecionar("#sucos")
 const box_card = selecionar("#box_card")
-const montePizzaClassic = selecionarTodos('.pz__classic')
-const montePizzaEspeciais = selecionar('.pz__especiais')
-const montePizzaDoces = selecionar('.pz__doces')
 
 const apiProdutos = "lista_produtos.json"
 fetch(apiProdutos)
@@ -60,47 +54,6 @@ fetch(apiProdutos)
             btnFechar()
         });
     })
-
-    const btn = selecionar('.montePizza')
-    btn.addEventListener('click',(e)=>{
-        selecionar('.monte_pizza').classList.remove('hidden')
-        escolhe_borda()
-    })
-
-const montarSaboresPizza = (conf , index) =>{
-    let element = document.createElement('option')
-    element.setAttribute('value', index)
-    element.innerHTML = conf.titulo
-    if (conf.type == 'pizza') {
-        addPZClassic('#P__classic',element)
-    } else if (conf.type == 'pizzas_especiais'){
-        montePizzaEspeciais.appendChild(element)
-    } else {
-        montePizzaDoces.appendChild(element)
-    }
-} 
-
-const addPZClassic = (id,element) =>{
-    selecionar(id).append(element)
-}
-
-const montarSaboresPizza2 = (conf , index) =>{
-    let element = document.createElement('option')
-    element.setAttribute('value', index)
-    element.innerHTML = conf.titulo
-    if (conf.type == 'pizza') {
-        addPZClassic2('#P2__classic',element)
-    } else if (conf.type == 'pizzas_especiais'){
-        montePizzaEspeciais.appendChild(element)
-    } else {
-        montePizzaDoces.appendChild(element)
-    }
-} 
-
-const addPZClassic2 = (id,element) =>{
-    selecionar(id).append(element)
-}
-
 const escolhe_borda = () =>{
     let nome = ["chocolate","cheddar", "catupiry" , "cream cheese"]
     for (let index = 0; index < arrayBordas.length ; index++) {
@@ -121,15 +74,9 @@ const preencheDadosProdutos = (produto, conf, index) => {
     produto.querySelector(".preco_info").innerText = formatoReal(conf.preco[0])
     if (conf.type == "pizza") {
         pizzas.appendChild(produto)
-        montarSaboresPizza(conf , index)
-        montarSaboresPizza2(conf , index)
-    } else if (conf.type == "pizzas_especiais") {
-        pizzas_especiais.appendChild(produto)
-        montarSaboresPizza(conf , index)
     } else if (conf.type == "pizzas_doces") {
         pizzas_doces.appendChild(produto)
-        montarSaboresPizza(conf , index)
-    } else if (conf.type == "sucos") {
+    } else if (conf.type == "suco") {
         sucos.appendChild(produto)
         sucos.querySelector('.span_preco').remove()
     } else {
@@ -149,10 +96,7 @@ const preencheDadosmodal = (conf) => {
     box_card.querySelector(".titulo_info").innerText = conf.titulo
     box_card.querySelector(".descri_info").innerText = conf.descricao
 
-    if (conf.type == "petiscos") {
-        box_card.querySelector("#tm_4").classList.add("hidden")
-        box_card.querySelector("#tm_2").classList.add("hidden")
-    } else if (conf.type == 'sucos') {
+    if (conf.type == 'suco') {
         selecionar('#tm_4').querySelectorAll('p').forEach((item) => item.classList.remove('tm_p'))
         box_card.querySelector("#tm_2").classList.remove("hidden")
         box_card.querySelector("#tm_4").classList.add("hidden")
@@ -291,14 +235,14 @@ const mudarQuantidade = () => {
 const adicionarNoCarrinho = () => {
     selecionar('#carrinho').addEventListener('click', () => {
         console.log('adicionado no carrinho');
-
+        let sizeBorda = selecionar('#list_bordas').value
+        
         let size = selecionar('.tm_p.selected').getAttribute('data-key')
 
-        let preco = selecionar('#preco').innerHTML.replace('R$&nbsp;', '')
-
         let identifica = itemProdutos[modalkey].id + 't' + size
+        
+        let preco = (selecionar('#list_bordas').value != "")?arrayBordas[selecionar('.tm_p.selected').getAttribute('id')][0][sizeBorda] + itemProdutos[modalkey].preco[selecionar('.tm_p.selected').getAttribute('id')] : itemProdutos[modalkey].preco[selecionar('.tm_p.selected').getAttribute('id')];
 
-        let sizeBorda = selecionar('#list_bordas').value
         if (sizeBorda != '') {
             identifica += `comB${sizeBorda}`
         } else {
@@ -431,14 +375,20 @@ selecionar('.enviar_wap').addEventListener('click', (e) => {
     let valueTotal = parseFloat((selecionar('.valor__total p').innerHTML).replace('R$&nbsp;',''))
     let valueTroco = parseFloat(selecionar('#T_valor').value)
 
-    if (name && end && zona && NuCasa && typePagamento && troco && voltaTroco) {
-        if (valueTroco > valueTotal) {
-            enviarPedido()
+    if (name && end && zona && NuCasa && typePagamento && troco ) {
+        if (document.querySelector("#pagamento").value == "dinheiro" && document.querySelector("#T_sim").checked ) {
+            if (valueTroco > valueTotal) {
+                enviarPedido()
+            } else {
+                console.log(((document.querySelector("#T_sim").checked )&& valueTroco > valueTotal));
+                
+                alert('valor para troco deve ser maior')
+            }
         } else {
-            alert('valor para troco deve ser maior')
-            e.preventDefault()
+            enviarPedido()
         }
-    }
+        e.preventDefault()
+        }
 })
 
 selecionar('.cancelar').addEventListener('click', (e) => {
@@ -520,12 +470,14 @@ const enviarPedido = () => {
     })
     let NuCasa = selecionar('#N_casa').value
     let pontoReferencia = selecionar('#referencia').value
-    let total = selecionar('.valor__total p').innerHTML.replace('R$&nbsp;', '')
+    let total = 0
+    arrayCar.filter((e)=>total += e.preco)
     let frete = selecionar('.valor__entrega p').innerHTML.replace('R$&nbsp;', '')
     let troco = selecionar('#T_sim').checked
     let formatoPg = selecionar('#pagamento').value
     let qtTroco = selecionar('#T_valor').value
-
+    
+    
     for (const i in arrayCar) {
         let arrayPedidos = {
             titulo: itemProdutos[(parseInt(arrayCar[i].id) - 1)].titulo,
@@ -536,21 +488,20 @@ const enviarPedido = () => {
         }
         arrayEnviarPedido.push(arrayPedidos)
     }
-    let fone = 5584987121574
-    let teste = '-------PEDIDO-------%0A%0A'
+    let teste = '<h1 class="font-bold my-1">-------PEDIDO-------</h1>'
 
     for (let i = 0; i < arrayEnviarPedido.length; i++) {
         let msg = ''
         if (arrayEnviarPedido[i].borda == undefined) {
-            msg += `${arrayEnviarPedido[i].qt} - ${arrayEnviarPedido[i].titulo} (${arrayEnviarPedido[i].size})%0A`
+            msg += `${arrayEnviarPedido[i].qt} - ${arrayEnviarPedido[i].titulo} (${arrayEnviarPedido[i].size})<br>`
         } else {
-            msg += `${arrayEnviarPedido[i].qt} - ${arrayEnviarPedido[i].titulo} (${arrayEnviarPedido[i].size}) com borda de ${arrayEnviarPedido[i].borda}%0A`
+            msg += `${arrayEnviarPedido[i].qt} - ${arrayEnviarPedido[i].titulo} (${arrayEnviarPedido[i].size}) com borda de ${arrayEnviarPedido[i].borda}<br>`
         }
 
         teste += msg
     }
 
-    teste += `------OBSERVAÇÃO------%0A%0AObs:%20${obs}%0A%0A-----DADOS DO CLIENTE-----%0A%0A`
+    teste += `<h2 class="font-bold my-1">------OBSERVAÇÃO------</h2>${obs}<h2 class="font-bold my-1">-----DADOS DO CLIENTE-----</h2>`
     if (frete != 'Grátis') {
         frete = 'R$ ' + frete
     }
@@ -558,23 +509,14 @@ const enviarPedido = () => {
     let value_troco = parseFloat(qtTroco) - parseFloat(total)
 
     if (troco) {
-        if (pontoReferencia) {
-            teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0APonto de referencia: ${pontoReferencia}.%0AEntrega: ${frete}.%0APagamento no: ${formatoPg}.%0ATroco para: R$${qtTroco}.%0Avalor total: R$${total}.%0A*valor do troco: R$ ${value_troco},00*`
-        } else {
-            teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0Aentrega: ${frete}.%0APagamento no: ${formatoPg}.%0ATroco para: R$${qtTroco}.%0Avalor total: R$${total}.%0A*valor do troco: R$ ${value_troco},00*`
-        }
-        
+        teste += `<p><span class="font-bold">Endereço:</span> ${end}-${NuCasa}/zona ${zona}<br> <span class="font-bold">Ponto de referencia:</span> ${pontoReferencia}<br> <span class="font-bold">Entrega:</span> ${frete}<br><span class="font-bold">Pagamento no:</span> ${formatoPg}<br> <span class="font-bold">valor total:</span> R$${total}<br><span class="font-bold">Troco para:</span> R$${qtTroco}<br> <span class="font-bold">valor do troco:</span> R$ ${value_troco},00</p>` 
     } else {
-        if (pontoReferencia) {
-            teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0Aentrega: ${frete}.%0APagamento no: ${formatoPg}.%0Avalor total: R$${total}.`
-        } else {
-            teste += `Endereço: ${end}-${NuCasa}/zona ${zona}.%0APonto de referencia: ${pontoReferencia}.%0Aentrega: ${frete}.%0APagamento no: ${formatoPg}.%0Avalor total: R$${total}.`
-        }
+        teste += `<p><span class="font-bold">Endereço:</span> ${end}-${NuCasa}/zona ${zona}<br> <span class="font-bold">Ponto de referencia:</span> ${pontoReferencia}<br> <span class="font-bold">Entrega:</span> ${frete}<span class="font-bold"><br>Pagamento no:</span> ${formatoPg}<br> <span class="font-bold">valor total:</span> R$${total}</p>`
     }
 
 
-    let url = `https://api.whatsapp.com/send?phone=${fone}&text=${teste}`
-    window.open(url)
+    localStorage.setItem("valor",teste)
+    setTimeout(()=>window.open('./pagina.html'),2000)
 }
 
 selecionar('#T_valor').addEventListener('input', (el) => {
