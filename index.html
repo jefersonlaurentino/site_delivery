@@ -27,54 +27,6 @@
     </div>
     <!-- fim do card -->
 
-    <!-- escolhe a pizza 2 sabores-->
-<div class="monte_pizza fixed top-0 w-full h-screen flex justify-center items-center bg-blue-300 z-20 hidden">
-    <div class="flex justify-center items-center w-11/12 bg-white rounded-lg shadow-md shadow-black/50">
-        <div class="img">
-            <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg" alt="">
-        </div>
-        <div class="p-3 text-center">
-            <h3 class="titulo_info">pizza 2 sabores</h3>
-            <form class="flex flex-col gap-2">
-                <div class="flex flex-col items-center">
-                    <label for="pri_sabor">escolha o primeiro sabor</label>
-                    <select name="P_sabor" id="pri_sabor" class="sabores__pizzas bg-gray-400 rounded-md" required>
-                        <option value="">selecione o primeiro sabor</option>
-                        <optgroup label="Clássicas" class="pz__classic" id="P__classic"></optgroup>
-
-                        <optgroup label="Especiais" class="pz__especiais"></optgroup>
-
-                        <optgroup label="Doces" class="pz__doces"></optgroup>
-
-                    </select>
-                </div>
-                <div class="flex flex-col items-center">
-                    <label for="se_sabor">escolha o Segundo sabor</label>
-                    <select name="S_sabor" id="se_sabor" class="bg-gray-400 rounded-md" required>
-                        <option value="">selecione o segundo sabor</option>
-                        <optgroup label="Clássicas" class="pz__classic" id="P2__classic"></optgroup>
-
-                        <optgroup label="Especiais" class="pz__especiais"></optgroup>
-
-                        <optgroup label="Doces" class="pz__doces"></optgroup>
-                    </select>
-                </div>
-                <div>
-                    <label for="escolhe_borda">Borda:</label>
-                    <select name="" id="escolhe_borda" class="bg-gray-400 rounded-md">
-                        <option value="">escolha a borda</option>
-                    </select>
-                </div>
-                <div>
-                    <button>Cancelar</button>
-                    <button>Adicionar no Carrinho</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
     <!-- box-card -->
     <div id="box_card"
         class="h-screen w-full fixed bg-black/50 flex flex-col justify-center items-center z-10 overflow-x-hidden hidden">
@@ -143,23 +95,25 @@
     <!-- fim box card -->
 
     <header class="fixed w-full flex items-center justify-between p-2 pr-6 z-30 top-0 bg-white">
-        <span class="menu m-1 material-symbols-outlined">
+        <span class="menu m-1 material-symbols-outlined cursor-pointer">
             menu
         </span>
         <span data-content="0"
-            class="carrinho relative material-symbols-outlined after:content-[attr(data-content)] after:absolute after:bg-red-600 after:text-white after:text-sm after:-right-3 after:-top-1 after:rounded-full after:w-5 after:h-5 after:flex after:justify-center after:items-center after:font-semibold after:font-mono">
+            class="carrinho cursor-pointer relative material-symbols-outlined after:content-[attr(data-content)] after:absolute after:bg-red-600 after:text-white after:text-sm after:-right-3 after:-top-1 after:rounded-full after:w-5 after:h-5 after:flex after:justify-center after:items-center after:font-semibold after:font-mono">
             shopping_bag
         </span>
     </header>
 
-    <div class="bg-black text-white p-6 flex flex-col justify-center items-center pt-16">
-        <div>
-            <img src="https://demo.zappin.shop/wp-content/uploads/2020/08/pizza-de-carne-de-sol-scaled.jpg"
-                alt="logo da loja." class="rounded-full w-24 h-24">
-        </div>
-        <div class="text-center">
-            <p>Rua Wanderley Agra de Azevedo.</p>
-            <p class="bg-green-700 px-3 rounded-md my-1">Aberto de seg a dom das 18h áte 23h</p>
+    <div class="bg-[url('https://st.depositphotos.com/1020618/2801/i/450/depositphotos_28017407-stock-photo-fire-flame-background.jpg')] bg-cover bg-no-repeat bg-center">
+        <div class="bg-black/50 w-full h-full text-white p-6 flex flex-col justify-center items-center pt-16">
+            <div class="rounded-full w-28 h-28 overflow-hidden">
+                <img src="https://www.shutterstock.com/shutterstock/photos/542641909/display_1500/stock-vector-vector-logo-pizza-delivery-vector-illustration-542641909.jpg"
+                    alt="logo da loja." >
+            </div>
+            <div class="text-center">
+                <p>Pizzaria do Dev.</p>
+                <p class="bg-green-700 px-3 rounded-md my-1">Aberto de seg a dom das 18h áte 23h</p>
+            </div>
         </div>
     </div>
     <!-- aside menu -->
@@ -233,20 +187,23 @@
     <!-- fim do aside carinho -->
     <main class="max-w-5xl m-auto">
 
-        <div id="pizzas" class="campo_card">
+        <div class="campo_card">
             <h2 class="titulo_cmp_card">Pizzas Clássicas</h2>
+            <div id="pizzas" class="md:grid md:grid-cols-2"></div>
         </div>
-        <div id="pizzas_doces" class="campo_card">
+        <div class="campo_card">
             <h2 class="titulo_cmp_card">Pizzas Doces</h2>
+            <div id="pizzas_doces" class="md:grid md:grid-cols-2"></div>
         </div>
-        <div id="sucos" class="campo_card">
+        <div class="campo_card">
             <h2 class="titulo_cmp_card">Sucos</h2>
+            <div id="sucos" class="md:grid md:grid-cols-2"></div>
         </div>
     </main>
 
     <!-- campo de endereço -->
-    <form class="campo__endereco z-40 fixed top-0 bg-gray-500 w-full h-full font-semibold hidden">
-        <main class="px-3 flex flex-col gap-3">
+    <form class="campo__endereco z-40 fixed top-0 bg-neutral-100 w-full h-full font-semibold hidden">
+        <main class="px-3 flex flex-col gap-3 h-[calc(100%-150px)] overflow-x-hidden pb-8">
             <h3 class="text-center text-xl font-semibold m-2">Endereço de entrega</h3>
             <div class="zona_input flex justify-center">
                 <div class="mr-9">
@@ -258,8 +215,8 @@
                     <label for="rural">Zona Rural</label>
                 </div>
             </div>
-            <div>
-                <label for="input_name">Nome:</label>
+            <div class="flex flex-col">
+                <label for="input_name">Nome:*</label>
                 <input type="text" name="I_name" id="input_name" required>
             </div>
 
@@ -269,7 +226,7 @@
                     <input type="text" id="endereco" class="bg-white border border-black" required>
                 </div>
                 <div>
-                    <label for="N_casa" class="font-semibold">N- casa</label>
+                    <label for="N_casa" class="font-semibold">N- casa*</label>
                     <input type="number" name="" id="N_casa" required>
                 </div>
             </div>
@@ -304,7 +261,6 @@
                 <div class="flex ">
                     <h4 class="px-2 bg-white rounded-xl ">R$<input type="text" name="" id="T_valor"
                             class=" w-14 rounded-xl outline-none focus:border-none pl-1"></h4>
-
                 </div>
             </div>
         </main>

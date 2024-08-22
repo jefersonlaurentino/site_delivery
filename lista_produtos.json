@@ -18,7 +18,7 @@
     {
         "id": "03" ,
         "type": "pizza",
-        "img": "",
+        "img": "https://www.designi.com.br/images/preview/10509549.jpg",
         "titulo": "Mista",
         "descricao": "Molho, mussarela, presunto, tomate e orégano.",
         "preco": [ 22 , 27 , 33 , 40 ]
@@ -26,7 +26,7 @@
     {
         "id": "04" ,
         "type": "pizza",
-        "img": "",
+        "img": "https://s2-receitas.glbimg.com/wb7DIMyCpEyV07sTAtcDWD8HQjw=/0x0:1200x675/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2024/h/r/EfCbvqTbeDRAD3Lzc5xA/pizza-margherita.jpg",
         "titulo": "Marguerita",
         "descricao": "Molho, mussarela, tomate, manjerição, orégano e azeitona.",
         "preco": [ 22 , 27 , 33 , 40 ]
@@ -34,7 +34,7 @@
     {
         "id": "05" ,
         "type": "pizza",
-        "img": "",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSByXA-u0iIOufGRC094rpBdcPs7kkOh72PKw&s",
         "titulo": "Mussarela",
         "descricao": "Molho, mussarela e orégano.",
         "preco": [ 22 , 27 , 33 , 40 ]
@@ -42,65 +42,65 @@
     {
         "id": "06" ,
         "type": "pizza",
-        "img": "",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE9OOLSxdewaLM5QAGc2Lusz9MsCQyIB8QaA&s",
         "titulo": "Camarão",
         "descricao": "Molho, mussarela, camarão, cream cheese e orégano.",
         "preco": [ 25 , 30 , 39 , 47 ]
     },
     {
         "id": "07" ,
-        "type": "pizza",
-        "img": "",
-        "titulo": "Carne de sol na nata",
-        "descricao": "Molho, queijo coalho, carne de sol, cebola roxa e nata.",
-        "preco": [ 24 , 30 , 38 , 45 ]
-    },
-    {
-        "id": "08" ,
         "type": "pizzas_doces",
-        "img": "",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCUbu1EQmbXO20YA4kKUBjRXnM1jdP3ZvddA&s",
         "titulo": "Chocolate com morango",
         "descricao": "Mussarela, chocolate ao leite, morango e Creme de leite.",
         "preco": [ 25 , 30 , 37 , 44 ]
     },
     {
-        "id": "09" ,
+        "id": "08" ,
         "type": "pizzas_doces",
-        "img": "",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSLESGbSlW7wwJ0UJQud6JXWEjdwpy_v2HYA&s",
         "titulo": "Chocolate com banana",
         "descricao": "Mussarela, chocolate ao leite, banana e creme de leite.",
         "preco": [ 22 , 27 , 34 , 42 ]
     },
     {
-        "id": "10" ,
+        "id": "09" ,
         "type": "pizzas_doces",
-        "img": "",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStUB3MTOeyCcKMqDRc0HudvIiF1l1HjiNnvw&s",
         "titulo": "Prestígio",
         "descricao": "Mussarela, chocolate e coco ralado.",
         "preco": [ 22 , 26 , 35 , 42 ]
     },
     {
-        "id": "11" ,
+        "id": "10" ,
         "type": "pizzas_doces",
-        "img": "",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOzkr1yzN3eK3_laBOkFgmBHRvcbyTJvzyhA&s",
         "titulo": "Romeu e julieta",
         "descricao": "Creme de leite, mussarela, doce de goiaba e queijo ralado.",
         "preco": [ 22 , 28 , 37 , 44 ]
     },
     {
+        "id": "11" ,
+        "type": "suco",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOkmEeFjW4MN453ZaCAYQiB5vS3V8rSkjgSg&s",
+        "titulo": "Suco de manga",
+        "descricao": "Natural",
+        "preco": [ 2 , 4 ]
+    },
+    {
         "id": "12" ,
-        "type": "pizzas_doces",
-        "img": "",
-        "titulo": "Oreo",
-        "descricao": "Molho, Creme de leite, chocolate braco, chocolate ao leite e biscoito oreo.",
-        "preco": [ 22 , 28 , 36 , 42 ]
+        "type": "suco",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWf-bDv9HEC9dZsLGXW2lPWK1JSgSmxGHGlw&s",
+        "titulo": "Suco de laranja",
+        "descricao": "Natural",
+        "preco": [ 2 , 4 ]
     },
     {
         "id": "13" ,
         "type": "suco",
-        "img": "",
-        "titulo": "manga",
-        "descricao": "",
-        "preco": [ 2 , 4 ]
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjxICsoYcpWNrN-PTnkD-z421smT00hU29SA&s",
+        "titulo": "Suco de uva",
+        "descricao": "Natural",
+        "preco": [ 4 , 6 ]
     }
 ]
