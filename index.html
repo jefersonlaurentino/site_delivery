@@ -55,7 +55,7 @@
                     <label for="nao">Não</label>
                     <input type="radio" name="borda" id="sim">
                     <label for="sim">Sim</label>
-                    <div class="select hidden">
+                    <div class="select mt-2 hidden">
                         <select name="borda" id="list_bordas" class="border-gray-200 border-2 rounded-md">
                             <option value="" selected>selecione a borda</option>
                             <option value="0">chocolate</option>
@@ -75,14 +75,14 @@
                     <p id="1" data-key="com leite" class="tm_p p-1 w-1/2 text-center">com leite</p>
                 </div>
             </div>
-            <div class="flex m-3 h-9 justify-between font-semibold text-2xl">
-                <div class="flex">
+            <div class="flex justify-between font-semibold items-center">
+                <div class="flex text-2xl m-3 h-9">
                     <p class="" id="preco"></p>
                 </div>
-                <div class="flex">
-                    <div id="menos_produtos" class="bg-gray-300 px-2 text-sm font-bold cursor-pointer">-</div>
-                    <div class="qtd-produto bg-white border-2 px-2 text-sm font-bold"></div>
-                    <div id="mais_produtos" class="bg-gray-300 px-2 text-sm font-bold cursor-pointer">+</div>
+                <div class="flex items-center border-gray-300 border-2 rounded-lg">
+                    <div id="menos_produtos" class="bg-gray-300 px-2">-</div>
+                    <div class="qtd-produto w-5 text-center">2</div>
+                    <div id="mais_produtos" class="bg-gray-300 px-2">+</div>
                 </div>
             </div>
             <div class="flex mt-3">
@@ -220,12 +220,12 @@
                 <input type="text" name="I_name" id="input_name" required>
             </div>
 
-            <div class="flex">
-                <div>
+            <div class="flex gap-3">
+                <div class="flex flex-col w-3/4">
                     <label for="endereco" class="font-semibold">Endereço: *</label>
                     <input type="text" id="endereco" class="bg-white border border-black" required>
                 </div>
-                <div>
+                <div class="flex flex-col w-3/12">
                     <label for="N_casa" class="font-semibold">N- casa*</label>
                     <input type="number" name="" id="N_casa" required>
                 </div>
