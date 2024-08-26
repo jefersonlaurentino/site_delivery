@@ -471,8 +471,8 @@ const enviarPedido = () => {
     let NuCasa = selecionar('#N_casa').value
     let pontoReferencia = selecionar('#referencia').value
     let total = 0
-    arrayCar.filter((e)=>total += e.preco)
-    let frete = selecionar('.valor__entrega p').innerHTML.replace('R$&nbsp;', '')
+    arrayCar.filter((e)=>total += e.preco * e.qt)
+    let frete = (selecionar("#urbana").checked)? "Grátis" : 5;
     let troco = selecionar('#T_sim').checked
     let formatoPg = selecionar('#pagamento').value
     let qtTroco = selecionar('#T_valor').value
@@ -487,6 +487,7 @@ const enviarPedido = () => {
             borda: (arrayCar[i].Borda) ? arrayCar[i].Borda : undefined,
         }
         arrayEnviarPedido.push(arrayPedidos)
+        console.log(arrayEnviarPedido);
     }
     let teste = '<h1 class="font-bold my-1">-------PEDIDO-------</h1>'
 
@@ -502,7 +503,8 @@ const enviarPedido = () => {
     }
 
     teste += `<h2 class="font-bold my-1">------OBSERVAÇÃO------</h2>${obs}<h2 class="font-bold my-1">-----DADOS DO CLIENTE-----</h2>`
-    if (frete != 'Grátis') {
+    if (frete != "Grátis") {
+        total +=frete
         frete = 'R$ ' + frete
     }
 
@@ -516,7 +518,7 @@ const enviarPedido = () => {
 
 
     localStorage.setItem("valor",teste)
-    setTimeout(()=>window.open('./pagina.html'),2000)
+    window.open('./pagina.html')
 }
 
 selecionar('#T_valor').addEventListener('input', (el) => {
